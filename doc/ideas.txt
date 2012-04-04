@@ -1,0 +1,14 @@
+Gem Tree / Calculator
+
+- Idea: Implement web app that allows user to view gem effects on characters in Street Fighter x Tekken and create 
+custom gem layouts.
+
+- Possible Languages
+	- HTML
+	- AJAX
+	- (Ruby / PHP??)
+
+Sources of Inspiration
+	- Borderlands Skill Tree: http://www.borderlandsthegame.com/skilltree/brick/
+	- Diablo Skill Tree: http://www.diablofans.com/page/tools/skill/
+	- WoW Skill Calculator: http://www.wowhead.com/talent
