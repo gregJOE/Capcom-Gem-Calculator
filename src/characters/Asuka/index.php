@@ -1,12 +1,12 @@
 <html>
 	<head>
-		<title> SF X T Gem Calculator - Raven</title>
+		<title> SF X T Gem Calculator - Asuka</title>
 		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript" src="../../js/gemEffects.js"></script>
 	</head>
 	<body>
-		<div id='header'> <h1> SF X T Gem Calculator - Raven</h1> </div>
+		<div id='header'> <h1> SF X T Gem Calculator - Asuka</h1> </div>
 		<div id='wrapper'>
 			<div id='GameContentFrame'>
 				<div id='options'>
@@ -109,7 +109,7 @@
 							<?php
                                                 		include ('../../php/fileOps.php');
 
-                                                		$fp = openCharacterData("Raven", "g");
+                                                		$fp = openCharacterData("Asuka", "g");
 
 								$j = 0;
 								
@@ -258,7 +258,7 @@
 						<table title="Frame Data" id='characterFrames'>
 					<?php 
 							
-						$fp = openCharacterData("Raven", "f");
+						$fp = openCharacterData("Asuka", "f");
 						while(($array = fgetcsv($fp, "0", "\t")) !== FALSE)
 						{
 							echo "\t\t\t\t\t\t<tr>\n";

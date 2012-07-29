@@ -27,7 +27,28 @@
 					<li> <a href="characters/Zangief"> Zangief </a>
 				</ul> 
 			</div>
-			<div id="tkCharacters"> Tekken <ul> </ul> </div>
+			<div id="tkCharacters"> Tekken 
+				<ul>
+                                        <li> <a href="characters/Asuka">Asuka</a>
+                                        <li> <a href="characters/Bob">Bob</a>
+                                        <li> <a href="characters/Heihachi">Heihachi</a>
+                                        <li> <a href="characters/Hwoarang">Hwoarang</a>
+                                        <li> <a href="characters/Jin">Jin</a>
+                                        <li> <a href="characters/Julia">Julia</a>
+                                        <li> <a href="characters/King">King</a>
+                                        <li> <a href="characters/Kuma">Kuma</a>
+                                        <li> <a href="characters/Law">Law</a>
+                                        <li> <a href="characters/Lili">Lili</a>
+                                        <li> <a href="characters/Marduk">Marduk</a>
+                                        <li> <a href="characters/Nina">Nina</a>
+                                        <li> <a href="characters/Ogre">Ogre</a>
+                                        <li> <a href="characters/Paul">Paul</a>
+					<li> <a href="characters/Raven">Raven</a>
+					<li> <a href="characters/Steve">Steve</a>
+					<li> <a href="characters/Xiaoyu">Xiaoyu</a>
+					<li> <a href="characters/Yoshimitsu">Yoshimitsu</a>
+                                </ul>
+			</div>
 		</div>
 	</body>
 </html>
