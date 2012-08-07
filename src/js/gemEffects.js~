@@ -14,8 +14,6 @@ $(document).ready(function(){
         });
 	
 	/* maybe there's a way to actually grab the html value of each class within this particular row? */
-
-	/* in case we remove gems/reset values, keep original values in an array */
 	genAttr.push($('.health').html());
 	genAttr.push($('.fwalkspeed').html());
 	genAttr.push($('.bwalkspeed').html());
@@ -30,7 +28,6 @@ $(document).ready(function(){
 	console.log("Ready");
 });
 
-/* watch for any changes to the gem options and call a function immediately */
 $('#gems1').live('change', function(){
 	var val = $("#gems1").val();
 	calculateGemEffects(val);
@@ -49,8 +46,7 @@ $('#gems3').live('change', function(){
 function calculateGemEffects(gemEffect)
 {
 	resetValuesWhileKeepingGemConfig();
-	
-	/* covering all gem types, since we aren't checking which gem was selected */	
+		
 	recalculateDamageGems();
 	recalculateDefenseGems();
 	recalculateSpeedGems();
@@ -611,52 +607,6 @@ function calculateSpeedEffects(value)
 		
 		perVal = binvulframe*value;
                 binvulframe-=perVal;
-	
-		var regResult = $(".vjumpframe").html().match(regExpAllNumbers);
-		var newString = "";
-		console.log(regResult);
-		
-		/* shouldnt ever be 0, but let's be careful just in case */
-		if (regResult.length > 1)
-		{
-			console.log("Loop: " + regResult[0]);
-			console.log("Loop: " + regResult[1]);
-				
-			var result1 = parseFloat(regResult[0]);
-			perVal = result1 * value;
-			result1+=perVal;
-	
-			var result2 = parseFloat(regResult[1]);
-			perVal = result2 * value;
-			result2+=perVal;
-			newString = result1 + "(" + result2 + ")";
-			$(".vjumpframe").html(newString);
-		}
-	
-		var regResult = $(".djumpframe").html().match(regExpAllNumbers);
-
-                if (regResult != null)
-                {
-                        var newString = "";
-                        console.log(regResult);
-
-                        if (regResult.length > 1)
-                        {
-                                console.log("Loop: " + regResult[0]);
-                                console.log("Loop: " + regResult[1]);
-
-                                var result1 = parseFloat(regResult[0]);
-                                perVal = result1 * value;
-                                result1+=perVal;
-
-                                var result2 = parseFloat(regResult[1]);
-                                perVal = result2 * value;
-                                result2+=perVal;
-
-                                newString = result1 + "(" + result2 + ")";
-                                $(".djumpframe").html(newString);
-                        }
-                }
 
 	}
 	console.log(bairframe);
@@ -863,8 +813,7 @@ function returnDamageValueFromString(string, delminator)
         }
 
 }
-/* Download / Upload stuff 
-THESE FUNCTIONS CURRENTLY DONT WORK */
+/* Download / Upload stuff */
 function downloadGemConfig()
 {
 	alert("You wish to download your current gem loadout");
