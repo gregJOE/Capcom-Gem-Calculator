@@ -3,8 +3,8 @@ var damageValues = [];
 var genAttr = [];
 var meterGainValues = [];
 var regExpAllNumbers = /[0-9]+/g;
-var regExpAllNumbers;
-
+var regExpAllMultipliers = /\d+(?!x)\d+/g;
+var regExpDamage = /[\d]+(,|x|f)|[\d]+/g;
 
 $(document).ready(function(){
 	/* there has to be an easier way of doing this */
@@ -333,8 +333,8 @@ function calculateDamage(gemTitle)
 {
 	if (gemTitle == "immenseLvl1"){
 		$('.damage').each(function(){
-			console.log($(this).html());
-			var regResult = $(this).html().match(regExpAllNumbers);
+			console.log("HTML: " + $(this).html());
+			var regResult = $(this).html().match(regExpDamage)
 			if (regResult != null)
 			{
 				var newString = "";
@@ -342,14 +342,45 @@ function calculateDamage(gemTitle)
 				
 				if (regResult.length > 1)
 				{
+					var isMultiplier = false;
 					for (var i = 0; i < regResult.length; ++i)
 					{
 						console.log("Loop: " + regResult[i]);
-                                	        var value = parseFloat(regResult[i]);
-                                	        value = (value * (0.10)) + value;
-                                	        newString = newString + value + ", ";
+						if (regResult[i] == undefined)
+						{
+							break;
+						}
+						else
+						{
+							/* needs to be a better way of checking if the current number is a multiplier */
+                                	        	var value = parseFloat(regResult[i]);
+							
+                                                        if (isMultiplier)
+                                                        {
+								newString = newString + value + ",";
+								isMultiplier = false;
+								continue;
+                                                        }
+							else
+							{
+								if (regResult[i].indexOf("x") != -1)
+								{
+									isMultiplier = true;
+									value = (value * (0.10)) + value;
+									newString = newString + value + "x";
+								}
+								else
+								{
+									value = (value * (0.10)) + value;
+                                	        			newString = newString + value + ",";
+								}
+							}
+						}
+						console.log("Current: " + newString);
                                 	}
-                                	newString = newString.substring(0,newString.length-2);
+					console.log("Log: " + newString);
+                                	newString = newString.substring(0,newString.length-1);
+					console.log("New Log: " + newString);
                                 	$(this).html(newString);	
 					$(this).css('color', 'green');
 				}
@@ -863,6 +894,7 @@ function returnDamageValueFromString(string, delminator)
         }
 
 }
+
 /* Download / Upload stuff 
 THESE FUNCTIONS CURRENTLY DONT WORK */
 function downloadGemConfig()
