@@ -1,4 +1,9 @@
 /* arrays used when we have to reset values. Useful for remembering original values of stats */
+
+/* TODO: CLEAN UP CODE. MAKE SMALLER FUNCTIONS SO THINGS ARE EASIER TO READ/FOLLOW*/
+
+
+
 var damageValues = [];
 var genAttr = [];
 var meterGainValues = [];
@@ -6,6 +11,7 @@ var regExpAllNumbers = /[0-9]+/g;
 var regExpAllMultipliers = /\d+(?!x)\d+/g;
 var regExpDamage = /[\d]+(,|x|f)|[\d]+/g;
 
+/* READY FUNCTION */
 $(document).ready(function(){
 	/* there has to be an easier way of doing this */
 	
@@ -46,6 +52,18 @@ $('#gems3').live('change', function(){
 	calculateGemEffects(val);	
 });
 
+
+/* DAMAGE GEM FUNCTIONS */
+
+/* DEFENSE GEM FUNCTIONS */
+
+/* SPEED GEM FUNCTIONS */
+
+/* HEALTH GEM FUNCTIONS */
+
+/* INPUT GEM FUNCTIONS */
+
+/* USER CONFIG STUFF */
 function calculateGemEffects(gemEffect)
 {
 	resetValuesWhileKeepingGemConfig();
