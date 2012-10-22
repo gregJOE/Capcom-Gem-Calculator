@@ -1,19 +1,26 @@
 /* arrays used when we have to reset values. Useful for remembering original values of stats */
+
+/* TODO: CLEAN UP CODE. MAKE SMALLER FUNCTIONS SO THINGS ARE EASIER TO READ/FOLLOW*/
+
 var damageValues = [];
 var genAttr = [];
 var meterGainValues = [];
 var regExpAllNumbers = /[0-9]+/g;
-var regExpAllNumbers;
+var regExpAllMultipliers = /\d+(?!x)\d+/g;
+var regExpDamage = /[\d]+(,|x|f)|[\d]+/g;
 
-
+/* READY FUNCTION */
 $(document).ready(function(){
 	/* there has to be an easier way of doing this */
 	
-	$('#characterData .damage').each(function() {
-               	damageValues.push($(this).html());
-        });
+	$('#characterData .damage').each(function() 
+	{
+		damageValues.push($(this).html());
+	});
 	
 	/* maybe there's a way to actually grab the html value of each class within this particular row? */
+
+	/* in case we remove gems/reset values, keep original values in an array */
 	genAttr.push($('.health').html());
 	genAttr.push($('.fwalkspeed').html());
 	genAttr.push($('.bwalkspeed').html());
@@ -28,10 +35,11 @@ $(document).ready(function(){
 	console.log("Ready");
 });
 
+/* watch for any changes to the gem options and call a function immediately */
 $('#gems1').live('change', function(){
 	var val = $("#gems1").val();
 	calculateGemEffects(val);
-});
+});-
 
 $('#gems2').live('change', function(){
 	var val = $("#gems2").val();
@@ -43,11 +51,177 @@ $('#gems3').live('change', function(){
 	calculateGemEffects(val);	
 });
 
+function createNewDamageString(string, gemValue)
+{
+	console.log(string);	
+	var regResult = string.match(regExpDamage);
+	if (regResult != null)
+	{
+		var newDamageString = "";
+		console.log(regResult);
+		
+		if (regResult.length > 1)
+		{
+			var newDamageString = calculateAndBuildMultiStringDamage(regResult, gemValue);
+			console.log(newDamageString);
+			newDamageString = newDamageString.substring(0,newDamageString.length-1);
+			return newDamageString;
+		}
+		else
+		{
+			var newDamageString = calculateSingleStringDamage(regResult, gemValue);
+			return newDamageString;
+		}
+	}
+	else
+	{
+		var newDamageString = calculateSingleStringDamage(regResult, gemValue);
+		return newDamageString;
+	}
+}
+
+/* DAMAGE GEM FUNCTIONS */
+function traverseDamageFields(gemTitle)
+{
+	var gemValue = 0;
+	if (gemTitle == "immenseLvl1")
+	{
+		gemValue = 10;
+		$('.damage').each(function()
+		{
+			if ( $(this).html() != "Damage")
+			{
+				$(this).html(createNewDamageString($(this).html(), gemValue));
+				
+				if (gemValue > 0)
+				{
+                			$(this).css('color', 'green');
+        			}
+        			else
+        			{
+					$(this).css('color', 'red');
+				}
+			}
+		})
+	}
+	else if (gemTitle == "immenseLvl2")	
+	{
+		gemValue = 20;
+
+		$('.damage').each(function()
+		{
+			if ( $(this).html() != "Damage")
+			{
+				$(this).html(createNewDamageString($(this).html(), gemValue));
+		                if (gemValue > 0)
+		                {
+		                        $(this).css('color', 'green');
+		                }
+		                else
+		                {
+		                        $(this).css('color', 'red');
+		                }
+			}
+
+		})		
+		/* reduce speed here */
+		calculateSpeedEffects(-10);
+	}
+	
+	else if (gemTitle == "immenseLvl3")
+	{
+		gemValue = 30;
+		$('.damage').each(function()
+		{
+			if ( $(this).html() != "Damage")
+			{
+				$(this).html(createNewDamageString($(this).html(), gemValue));
+				
+				if (gemValue > 0)
+				{
+					$(this).css('color', 'green');
+				}
+				else
+				{
+					$(this).css('color', 'red');
+				}
+			}
+
+		})
+	}
+	return;
+}
+
+/* DEFENSE GEM FUNCTIONS */
+
+/* SPEED GEM FUNCTIONS */
+
+/* HEALTH GEM FUNCTIONS */
+
+/* INPUT GEM FUNCTIONS */
+
+/* USER CONFIG STUFF */
+
+function checkIfMultiplier(string)
+{
+	if (string.indexOf("x") != -1)
+	{
+		return true;
+	}
+	return false; 
+}
+
+function calculateSingleStringDamage(data, gemValue)
+{
+	var percentage = gemValue / 100.0
+	data = parseFloat(data);
+	return (data * percentage) + data
+}
+
+function calculateAndBuildMultiStringDamage(data, gemValue)
+{
+	console.log(data);
+	var newString = ""
+	var isMultiplier = false;
+	for (var i = 0; i < data.length; i++)
+	{
+		console.log("char: " + data[i]);
+		if (data[i] == undefined)
+		{
+			break;
+		}
+		
+		if (isMultiplier)
+		{
+			newString = newString + data[i];
+			isMultiplier = false;
+			continue;
+		}
+		else
+		{
+			/* if checkIfMultiplier(data[i]) */
+			if (data[i].indexOf("x") != -1)
+			{
+				isMultiplier = true;
+				var value = calculateSingleStringDamage(data[i], gemValue)
+				newString = newString + value + "x";
+			}	
+			else
+			{
+				var value = calculateSingleStringDamage(data[i], gemValue)
+				newString = newString + value + ",";
+			}
+		}
+	}
+	return newString;
+}
+
 function calculateGemEffects(gemEffect)
 {
 	resetValuesWhileKeepingGemConfig();
-		
-	recalculateDamageGems();
+	
+	/* covering all gem types, since we aren't checking which gem was selected */	
+	retraverseDamageFieldsGems();
 	recalculateDefenseGems();
 	recalculateSpeedGems();
 	recalculateAssistGems();
@@ -80,27 +254,27 @@ function calculateDefenseGems(gemTitle)
 		$('.health').css("color", "green");
 	}
 	else if (gemTitle == "ironWallLvl2")
-        {
-                health = (health * (0.20)) + health;
+	{
+		health = (health * (0.20)) + health;
 		$('.health').css("color", "green");
 
-		calculateDamageEffects(-10);
-        }
+		traverseDamageFieldsEffects(-10);
+	}
 	else if (gemTitle == "ironWallLvl3")
-        {
-                health = (health * (0.30)) + health;
+	{
+		health = (health * (0.30)) + health;
 		$('.health').css("color", "green");
-        }
+	}
 
 	else if (gemTitle == "fortLvl1")
 	{
 		console.log("fort");
-                health = health + 100;
+		health = health + 100;
 		$('.health').css("color", "green");
 	}
 	else if (gemTitle == "fortLvl2")
 	{
-                health = health + 160;
+		health = health + 160;
 		$('.health').css("color", "green");
 	}
 	console.log(health);
@@ -131,71 +305,36 @@ function calculateSpeedGems(gemTitle)
 
 function calculateCrossGaugeGems(gemTitle)
 {
+	var gemValue = 0;
 	if (gemTitle == "onslaughtLvl1"){
+		gemValue = 20;
 		$('.meter-gain').each(function(){
-			console.log($(this).html());
 			
-			if ($(this).html() == "Meter-Gain")
+			$(this).html(createNewDamageString($(this).html(), gemValue));
+			if (gemValue > 0)
 			{
-				return;
-			}
-
-			else if(($(this).is(":contains(',')" )))
-			{
-				var newString = "";
-				var array = $(this).html().split(',');
-				for (var i = 0; i < array.length; ++i)
-				{
-					console.log("Loop: " + array[i]);
-					var value = parseFloat(array[i]);
-					value = (value * (0.20)) + value; 
-					newString = newString + value + ", ";
-				}	
-				newString = newString.substring(0,newString.length-2);			
-				$(this).html(newString);	
+				$(this).css('color', 'green');
 			}
 			else
 			{
-				var value = parseFloat($(this).html());
-				value = (value * (0.20)) + value;
-				$(this).html(value);
-
+				$(this).css('color', 'red');
 			}
-			
-			$(this).css('color', 'green');
+
 		})
 	}
 	else if (gemTitle == "onslaughtLvl2"){
+		gemValue = 40
 		$('.meter-gain').each(function()
 		{
-			console.log($(this).html());
-			
-			if ($(this).html() == "Meter-Gain")
+			$(this).html(createNewDamageString($(this).html(), gemValue));
+			if (gemValue > 0)
 			{
-				return;
-			}
-			else if(($(this).is(":contains(',')" )))
-			{
-				var newString = "";
-				 var array = $(this).html().split(',');
-				 for (var i = 0; i < array.length; ++i)
-				 {
-					 var value = parseFloat(array[i]);
-					 value = (value * (0.40)) + value;
-					 newString = newString + value + ", ";
-				 }
-				 
-				 newString = newString.substring(0,newString.length-2);
-				 $(this).html(newString);
+				$(this).css('color', 'green');
 			}
 			else
 			{
-				var value = parseFloat($(this).html());
-				value = (value * (0.40)) + value;
-				$(this).html(value);
+				$(this).css('color', 'red');
 			}
-			$(this).css('color', 'green');
-
 			/* reduce speed here */
 		})
 	}
@@ -211,69 +350,23 @@ function calculateCrossGaugeGems(gemTitle)
 			/* reduce speed by 10% */
 			calculateSpeedEffects(-10);
 			/**** NOTE, FIGURE OUT A WAY TO MEASURE AMOUNT OF EX BAR USED BY CERTAIN MOVES *****/
-			/* take the numbers of an an entire string, and put it back into the original string
-			else if(($(this).is(":contains(',')" )))
-			{
-				var newString = "";
-				var array = $(this).html().split(',');
-				for (var i = 0; i < array.length; ++i)
-				{
-					var value = parseFloat(array[i]);
-					value = (value * (-0.0)) + value;
-					newString = newString + value + ", ";
-				}
-				newString = newString.substring(0,newString.length-2);
-				$(this).html(newString);
-			}
-			else
-			{
-				 var value = parseFloat($(this).html());
-				 value = (value * (0.30)) + value;
-				 $(this).html(value);
-			}
-			$(this).css('color', 'green'); */
 		})	
 	}
 
 	else if (gemTitle == "proficiencyLvl2"){
-                $('.meter-gain').each(function()
-                {
-                        if ($(this).html() == "Meter-Gain")
-                        {
-                                return;
-                        }
+		$('.meter-gain').each(function()
+		{
+			if ($(this).html() == "Meter-Gain")
+			{
+				return;
+			}
 			
 			/* reduce speed by 10% */
-
-                        /**** NOTE, FIGURE OUT A WAY TO MEASURE AMOUNT OF EX BAR USED BY CERTAIN MOVES *****/
-
-                        /* take the numbers of an an entire string, and put it back into the original string
-                        else if(($(this).is(":contains(',')" )))
-                        {
-                                var newString = "";
-                                var array = $(this).html().split(',');
-                                for (var i = 0; i < array.length; ++i)
-                                {
-                                        var value = parseFloat(array[i]);
-                                        value = (value * (0.40)) + value;
-                                        newString = newString + value + ", ";
-                                }
-                                newString = newString.substring(0,newString.length-2);
-                                $(this).html(newString);
-                        }
-                        else
-                        {
-                                 var value = parseFloat($(this).html());
-                                 value = (value * (0.40)) + value;
-                                 $(this).html(value);
-                        }
-                        $(this).css('color', 'green');
-			*/
-                })
-        }
+			/**** NOTE, FIGURE OUT A WAY TO MEASURE AMOUNT OF EX BAR USED BY CERTAIN MOVES *****/
+        })
+	}
 	return;
 }
-
 
 /* this function just writes HTML code */
 function calculateVitalityGems(gemTitle)
@@ -298,19 +391,19 @@ function calculateAssistGems(gemTitle)
 	/* might cause a bug where strings may be written over again */
 	if (gemTitle == "easyInput")
 	{
-		calculateDamageEffects(-10);
+		traverseDamageFieldsEffects(-10);
 		$("#additionalEffects").append("<li> Special Moves become easier to do </li>");
 	}
 	
 	else if (gemTitle == "superEasyInput")
         {
-		calculateDamageEffects(-10)
+		traverseDamageFieldsEffects(-10)
                 $("#additionalEffects").append("<li>Special Moves become very easy to do </li>");
         }
 	
 	else if (gemTitle == "cancelAssist")
         {
-		calculateDamageEffects(-10)
+		traverseDamageFieldsEffects(-10)
 		$("#additionalEffects").append("<li>Special Move cancels become easy to do</li>");
         }
 
@@ -325,123 +418,18 @@ function calculateAssistGems(gemTitle)
         }
 }
 
-function calculateDamage(gemTitle)
+function retraverseDamageFieldsGems()
 {
-	if (gemTitle == "immenseLvl1"){
-		$('.damage').each(function(){
-			console.log($(this).html());
-			var regResult = $(this).html().match(regExpAllNumbers);
-			if (regResult != null)
-			{
-				var newString = "";
-				console.log(regResult);
-				
-				if (regResult.length > 1)
-				{
-					for (var i = 0; i < regResult.length; ++i)
-					{
-						console.log("Loop: " + regResult[i]);
-                                	        var value = parseFloat(regResult[i]);
-                                	        value = (value * (0.10)) + value;
-                                	        newString = newString + value + ", ";
-                                	}
-                                	newString = newString.substring(0,newString.length-2);
-                                	$(this).html(newString);	
-					$(this).css('color', 'green');
-				}
-				else
-				{
-					var value = parseFloat($(this).html());
-                                	value = (value * (0.10)) + value;
-                                	$(this).html(value);
-					$(this).css('color', 'green');
-				}
-			}
-		})
-	}
-	else if (gemTitle == "immenseLvl2"){
-		$('.damage').each(function()
-		{
-			console.log($(this).html());
-			
-			if ($(this).html() == "Damage")
-			{
-				return;
-			}
-			else if(($(this).is(":contains(',')" )))
-			{
-				var newString = "";
-				 var array = $(this).html().split(',');
-				 for (var i = 0; i < array.length; ++i)
-				 {
-					 var value = parseFloat(array[i]);
-					 value = (value * (0.20)) + value;
-					 newString = newString + value + ", ";
-				 }
-				 
-				 newString = newString.substring(0,newString.length-2);
-				 $(this).html(newString);
-			}
-			else
-			{
-				var value = parseFloat($(this).html());
-				value = (value * (0.20)) + value;
-				$(this).html(value);
-			}
-			$(this).css('color', 'green');
-
-		})
-		
-		/* reduce speed here */
-		calculateSpeedEffects(-10);
-	}
-	
-	else if (gemTitle == "immenseLvl3"){
-		$('.damage').each(function()
-		{
-			if ($(this).html() == "Damage")
-			{
-				return;
-			}
-
-			/* take the numbers of an an entire string, and put it back into the original string */
-			else if(($(this).is(":contains(',')" )))
-			{
-				var newString = "";
-				var array = $(this).html().split(',');
-				for (var i = 0; i < array.length; ++i)
-				{
-					var value = parseFloat(array[i]);
-					value = (value * (0.30)) + value;
-					newString = newString + value + ", ";
-				}
-				newString = newString.substring(0,newString.length-2);
-				$(this).html(newString);
-			}
-			else
-			{
-				 var value = parseFloat($(this).html());
-				 value = (value * (0.30)) + value;
-				 $(this).html(value);
-			}
-			$(this).css('color', 'green');
-		})	
-	}
-	return;
-}
-
-function recalculateDamageGems()
-{
-	calculateDamage($("#gems1").val());
-	calculateDamage($("#gems2").val());
-	calculateDamage($("#gems3").val());
+	traverseDamageFields($("#gems1").val());
+	traverseDamageFields($("#gems2").val());
+	traverseDamageFields($("#gems3").val());
 		
 	return;
 }
 
 function recalculateDefenseGems()
 {
-        calculateDefenseGems($("#gems1").val());
+	calculateDefenseGems($("#gems1").val());
 	calculateDefenseGems($("#gems2").val());
 	calculateDefenseGems($("#gems3").val());
 	return;
@@ -450,8 +438,8 @@ function recalculateDefenseGems()
 function recalculateSpeedGems()
 {
 	calculateSpeedGems($("#gems1").val());
-        calculateSpeedGems($("#gems2").val());
-        calculateSpeedGems($("#gems3").val());
+	calculateSpeedGems($("#gems2").val());
+	calculateSpeedGems($("#gems3").val());
 	return;
 
 }
@@ -493,30 +481,25 @@ function calculateSpeedEffects(value)
 	{
 		$(".fwalkspeed").css("color", "red");
 		$(".bwalkspeed").css("color", "red");
-
 		$(".btotalframe").css("color", "red");
-                $(".bairframe").css("color", "red");
-                $(".bgroundframe").css("color", "red");
-                $(".binvulframe").css("color", "red");
+		$(".bairframe").css("color", "red");
+		$(".bgroundframe").css("color", "red");
+		$(".binvulframe").css("color", "red");
 		$(".fdashframe").css("color", "red");
-                $(".vjumpframe").css("color", "red");
-                $(".djumpframe").css("color", "red");
-
-
+		$(".vjumpframe").css("color", "red");
+		$(".djumpframe").css("color", "red");
 	}
 	else
 	{
 		$(".fwalkspeed").css("color", "green");
-                $(".bwalkspeed").css("color", "green");
-
+		$(".bwalkspeed").css("color", "green");
 		$(".btotalframe").css("color", "green");
-                $(".bairframe").css("color", "green");
-                $(".bgroundframe").css("color", "green");
-                $(".binvulframe").css("color", "green");
+		$(".bairframe").css("color", "green");
+		$(".bgroundframe").css("color", "green");
+		$(".binvulframe").css("color", "green");
 		$(".fdashframe").css("color", "green");
 		$(".vjumpframe").css("color", "green");
 		$(".djumpframe").css("color", "green");
-
 	}
 	/* convert value to decimal	
 	var binvulframe = parseFloat($(".binvulframe").html());
@@ -607,6 +590,52 @@ function calculateSpeedEffects(value)
 		
 		perVal = binvulframe*value;
                 binvulframe-=perVal;
+	
+		var regResult = $(".vjumpframe").html().match(regExpAllNumbers);
+		var newString = "";
+		console.log(regResult);
+		
+		/* shouldnt ever be 0, but let's be careful just in case */
+		if (regResult.length > 1)
+		{
+			console.log("Loop: " + regResult[0]);
+			console.log("Loop: " + regResult[1]);
+				
+			var result1 = parseFloat(regResult[0]);
+			perVal = result1 * value;
+			result1+=perVal;
+	
+			var result2 = parseFloat(regResult[1]);
+			perVal = result2 * value;
+			result2+=perVal;
+			newString = result1 + "(" + result2 + ")";
+			$(".vjumpframe").html(newString);
+		}
+	
+		var regResult = $(".djumpframe").html().match(regExpAllNumbers);
+
+                if (regResult != null)
+                {
+                        var newString = "";
+                        console.log(regResult);
+
+                        if (regResult.length > 1)
+                        {
+                                console.log("Loop: " + regResult[0]);
+                                console.log("Loop: " + regResult[1]);
+
+                                var result1 = parseFloat(regResult[0]);
+                                perVal = result1 * value;
+                                result1+=perVal;
+
+                                var result2 = parseFloat(regResult[1]);
+                                perVal = result2 * value;
+                                result2+=perVal;
+
+                                newString = result1 + "(" + result2 + ")";
+                                $(".djumpframe").html(newString);
+                        }
+                }
 
 	}
 	console.log(bairframe);
@@ -627,54 +656,28 @@ function calculateSpeedEffects(value)
 }
 
 
-function calculateDamageEffects(value)
+function traverseDamageFieldsEffects(value)
 {
-	console.log("damage reduce: " + value);
-	
-	if (value < 0)
-	{
-                value/=100;
-
-		$('.damage').css('color', 'red');
-	}
-        else
-        {	
-		value/=100;
-
-                $('.damage').css('color', 'green');
-        }
-	console.log("new reduce: " + value);
-	
 	$('.damage').each(function(){
-		console.log($(this).html());
 		
+
 		if ($(this).html() == "Damage")
-                {
+		{
 			$(this).css('color', 'black');
-                	return;
-                }
-		
-		if(($(this).is(":contains(',')" )))
-                {
-			var newString = "";
-                        var array = $(this).html().split(',');
-                        
-			for (var i = 0; i < array.length; ++i)
-                        {
-				console.log("Loop: " + array[i]);
-                                var newValue = ( parseFloat(array[i]) * value) + parseFloat(array[i]); 
-                                newString = newString + newValue + ", ";
-                      	}
-                        newString = newString.substring(0,newString.length-2);
-                        $(this).html(newString);
-                }
-                else
-                {
-			var newValue = parseFloat($(this).html());
-			newValue = (newValue * value) + newValue;
-			$(this).html(newValue);
+			return;
 		}
-         })
+		
+		$(this).html(createNewDamageString($(this).html(), value));
+		if (value > 0)
+		{
+			$(this).css('color', 'green');
+		}
+		else
+		{
+			$(this).css('color', 'red');
+		}
+
+	})
 	
 }
 
@@ -813,7 +816,9 @@ function returnDamageValueFromString(string, delminator)
         }
 
 }
-/* Download / Upload stuff */
+
+/* Download / Upload stuff 
+THESE FUNCTIONS CURRENTLY DONT WORK */
 function downloadGemConfig()
 {
 	alert("You wish to download your current gem loadout");
