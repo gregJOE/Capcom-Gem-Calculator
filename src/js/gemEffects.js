@@ -71,7 +71,7 @@ function createNewDamageString(string, gemValue)
 			/* have this function trim if there's a comma */
 			if (newDamageString.lastIndexOf(",") == newDamageString.length-1)
 			{
-				newDamageString = newDamageString.substring(0,newDamageString.length-2);
+				newDamageString = newDamageString.substring(0,newDamageString.length-1);
 			}
 			return newDamageString;
 		}
@@ -87,23 +87,8 @@ function createNewDamageString(string, gemValue)
 		var newDamageString = calculateSingleStringDamage(regResult, gemValue);
 		return newDamageString;
 	}
+
 }
-
-
-                if (containsNumber($(this).html()))
-                {
-                        console.log("uscs");
-                        $(this).html(createNewDamageString($(this).html(), value));
-                        if (value > 0)
-                        {
-                                $(this).css('color', 'green');
-                        }
-                        else
-                        {
-                                $(this).css('color', 'red');
-                        }
-                }
-
 /* DAMAGE GEM FUNCTIONS */
 function traverseDamageFields(gemTitle)
 {
@@ -208,7 +193,7 @@ function calculateSingleStringDamage(data, gemValue)
 {
 	var percentage = gemValue / 100.0
 	data = parseFloat(data);
-	return (data * percentage) + data
+	return parseInt((data * percentage) + data)
 }
 
 function calculateAndBuildMultiStringDamage(data, gemValue)
@@ -238,6 +223,11 @@ function calculateAndBuildMultiStringDamage(data, gemValue)
 				isMultiplier = true;
 				var value = calculateSingleStringDamage(data[i], gemValue)
 				newString = newString + value + "x";
+			}
+			else if (data[i].indexOf("/") != -1)
+			{
+				var value = calculateSingleStringDamage(data[i], gemValue)
+                                newString = newString + value + "/";
 			}	
 			else
 			{
@@ -246,6 +236,7 @@ function calculateAndBuildMultiStringDamage(data, gemValue)
 			}
 		}
 	}
+	console.log("Result: " + newString);
 	return newString;
 }
 
@@ -500,12 +491,12 @@ function calculateSpeedEffects(value)
 {	
 	console.log("speed reduce: " + value);
 	/* walk speed values are in percentage. */
-	var fwalk = parseFloat($(".fwalkspeed").html());
+	var fwalk = parseInt($(".fwalkspeed").html());
 	fwalk+=value;
 	fwalk+="%";
 	$(".fwalkspeed").html(fwalk);
 	
-	var bwalk = parseFloat($(".bwalkspeed").html());
+	var bwalk = parseInt($(".bwalkspeed").html());
         bwalk+=value;
         bwalk+="%";
         $(".bwalkspeed").html(bwalk);
@@ -545,10 +536,10 @@ function calculateSpeedEffects(value)
 	*/
 
 	/* change backwards walk speed */
-	var btotalframe = parseFloat($(".btotalframe").html());
-	var bairframe = parseFloat($(".bairframe").html());
-	var bgroundframe = parseFloat($(".bgroundframe").html());
-	var binvulframe = parseFloat($(".binvulframe").html());
+	var btotalframe = parseInt($(".btotalframe").html());
+	var bairframe = parseInt($(".bairframe").html());
+	var bgroundframe = parseInt($(".bgroundframe").html());
+	var binvulframe = parseInt($(".binvulframe").html());
 	
 	if (value < 0)
 	{	
@@ -574,12 +565,12 @@ function calculateSpeedEffects(value)
 			console.log("Loop: " + regResult[0]);
 			console.log("Loop: " + regResult[1]);
 				
-			var result1 = parseFloat(regResult[0]);
-			perVal = result1 * value;
+			var result1 = parseInt(regResult[0]);
+			perVal = parseInt(result1 * value);
 			result1+=perVal;
 	
-			var result2 = parseFloat(regResult[1]);
-			perVal = result2 * value;
+			var result2 = parseInt(regResult[1]);
+			perVal = parseInt(result2 * value);
 			result2+=perVal;
 			newString = result1 + "(" + result2 + ")";
 			$(".vjumpframe").html(newString);
@@ -597,12 +588,12 @@ function calculateSpeedEffects(value)
                                 console.log("Loop: " + regResult[0]);
                                 console.log("Loop: " + regResult[1]);
 
-                                var result1 = parseFloat(regResult[0]);
-                                perVal = result1 * value;
+                                var result1 = parseInt(regResult[0]);
+                                perVal = parseInt(result1 * value);
                                 result1+=perVal;
 
-                                var result2 = parseFloat(regResult[1]);
-                                perVal = result2 * value;
+                                var result2 = parseInt(regResult[1]);
+                                perVal = parseInt(result2 * value);
                                 result2+=perVal;
 
                                 newString = result1 + "(" + result2 + ")";
@@ -634,12 +625,12 @@ function calculateSpeedEffects(value)
 			console.log("Loop: " + regResult[0]);
 			console.log("Loop: " + regResult[1]);
 				
-			var result1 = parseFloat(regResult[0]);
-			perVal = result1 * value;
+			var result1 = parseInt(regResult[0]);
+			perVal = parseInt(result1 * value);
 			result1+=perVal;
 	
-			var result2 = parseFloat(regResult[1]);
-			perVal = result2 * value;
+			var result2 = parseInt(regResult[1]);
+			perVal = parseInt(result2 * value);
 			result2+=perVal;
 			newString = result1 + "(" + result2 + ")";
 			$(".vjumpframe").html(newString);
@@ -657,12 +648,12 @@ function calculateSpeedEffects(value)
                                 console.log("Loop: " + regResult[0]);
                                 console.log("Loop: " + regResult[1]);
 
-                                var result1 = parseFloat(regResult[0]);
-                                perVal = result1 * value;
+                                var result1 = parseInt(regResult[0]);
+                                perVal = parseInt(result1 * value);
                                 result1+=perVal;
 
-                                var result2 = parseFloat(regResult[1]);
-                                perVal = result2 * value;
+                                var result2 = parseInt(regResult[1]);
+                                perVal = parseInt(result2 * value);
                                 result2+=perVal;
 
                                 newString = result1 + "(" + result2 + ")";
