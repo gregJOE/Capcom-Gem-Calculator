@@ -7,7 +7,8 @@ var genAttr = [];
 var meterGainValues = [];
 var regExpAllNumbers = /[0-9]+/g;
 var regExpAllMultipliers = /\d+(?!x)\d+/g;
-var regExpDamage = /[\d]+(,|x|f)|[\d]+/g;
+//var regExpDamage = /[\d]+(,|x|f)|[\d]+/g;
+var regExpDamage = /[\d]+(.|,|x|f)|[\d]+/g;
 
 /* READY FUNCTION */
 $(document).ready(function(){
@@ -39,7 +40,7 @@ $(document).ready(function(){
 $('#gems1').live('change', function(){
 	var val = $("#gems1").val();
 	calculateGemEffects(val);
-});-
+});
 
 $('#gems2').live('change', function(){
 	var val = $("#gems2").val();
@@ -64,12 +65,20 @@ function createNewDamageString(string, gemValue)
 		{
 			var newDamageString = calculateAndBuildMultiStringDamage(regResult, gemValue);
 			console.log(newDamageString);
-			newDamageString = newDamageString.substring(0,newDamageString.length-1);
+			
+			console.log(newDamageString.lastIndexOf(","))
+			console.log(newDamageString.length)
+			/* have this function trim if there's a comma */
+			if (newDamageString.lastIndexOf(",") == newDamageString.length-1)
+			{
+				newDamageString = newDamageString.substring(0,newDamageString.length-2);
+			}
 			return newDamageString;
 		}
 		else
-		{
+		{	
 			var newDamageString = calculateSingleStringDamage(regResult, gemValue);
+			console.log(newDamageString)
 			return newDamageString;
 		}
 	}
@@ -79,6 +88,21 @@ function createNewDamageString(string, gemValue)
 		return newDamageString;
 	}
 }
+
+
+                if (containsNumber($(this).html()))
+                {
+                        console.log("uscs");
+                        $(this).html(createNewDamageString($(this).html(), value));
+                        if (value > 0)
+                        {
+                                $(this).css('color', 'green');
+                        }
+                        else
+                        {
+                                $(this).css('color', 'red');
+                        }
+                }
 
 /* DAMAGE GEM FUNCTIONS */
 function traverseDamageFields(gemTitle)
@@ -91,15 +115,18 @@ function traverseDamageFields(gemTitle)
 		{
 			if ( $(this).html() != "Damage")
 			{
-				$(this).html(createNewDamageString($(this).html(), gemValue));
-				
-				if (gemValue > 0)
+				if (containsNumber($(this).html()))
 				{
-                			$(this).css('color', 'green');
-        			}
-        			else
-        			{
-					$(this).css('color', 'red');
+					$(this).html(createNewDamageString($(this).html(), gemValue));
+					
+					if (gemValue > 0)
+					{
+                				$(this).css('color', 'green');
+        				}
+        				else
+        				{
+						$(this).css('color', 'red');
+					}
 				}
 			}
 		})
@@ -112,15 +139,18 @@ function traverseDamageFields(gemTitle)
 		{
 			if ( $(this).html() != "Damage")
 			{
-				$(this).html(createNewDamageString($(this).html(), gemValue));
-		                if (gemValue > 0)
-		                {
-		                        $(this).css('color', 'green');
-		                }
-		                else
-		                {
-		                        $(this).css('color', 'red');
-		                }
+				if (containsNumber($(this).html()))
+				{
+					$(this).html(createNewDamageString($(this).html(), gemValue));
+		                	if (gemValue > 0)
+		                	{
+		                	        $(this).css('color', 'green');
+		                	}
+		               		else
+		                	{
+		                	        $(this).css('color', 'red');
+		                	}
+				}
 			}
 
 		})		
@@ -135,15 +165,18 @@ function traverseDamageFields(gemTitle)
 		{
 			if ( $(this).html() != "Damage")
 			{
-				$(this).html(createNewDamageString($(this).html(), gemValue));
-				
-				if (gemValue > 0)
+				if (containsNumber($(this).html()))
 				{
-					$(this).css('color', 'green');
-				}
-				else
-				{
-					$(this).css('color', 'red');
+					$(this).html(createNewDamageString($(this).html(), gemValue));
+					
+					if (gemValue > 0)
+					{
+						$(this).css('color', 'green');
+					}
+					else
+					{
+						$(this).css('color', 'red');
+					}
 				}
 			}
 
@@ -655,31 +688,37 @@ function calculateSpeedEffects(value)
 	return;
 }
 
-
 function traverseDamageFieldsEffects(value)
 {
 	$('.damage').each(function(){
-		
-
+	
 		if ($(this).html() == "Damage")
 		{
 			$(this).css('color', 'black');
 			return;
 		}
 		
-		$(this).html(createNewDamageString($(this).html(), value));
-		if (value > 0)
+		if (containsNumber($(this).html()))
 		{
-			$(this).css('color', 'green');
+			$(this).html(createNewDamageString($(this).html(), value));
+			if (value > 0)
+			{
+				$(this).css('color', 'green');
+			}
+			else
+			{
+				$(this).css('color', 'red');
+			}
 		}
-		else
-		{
-			$(this).css('color', 'red');
-		}
-
 	})
 	
 }
+
+function containsNumber(string)
+{
+        return /\d/.test(string);
+}
+
 
 function calculateDefenseEffects(value)
 {
@@ -736,19 +775,30 @@ function resetVitalityGemEffects()
 function resetSpeedValues()
 {
 	console.log("Reset Speed");
+
 	$(".fwalkspeed").html(genAttr[1]);
 	$(".bwalkspeed").html(genAttr[2]);
 	$(".btotalframe").html(genAttr[6]);
         $(".bairframe").html(genAttr[4]);
         $(".bgroundframe").html(genAttr[5]);
         $(".binvulframe").html(genAttr[3]);
-
+	$(".fdashframe").html(genAttr[7]);
 	$(".fwalkspeed").css("color", "black");
         $(".bwalkspeed").css("color", "black");
 	$(".btotalframe").css("color", "black");
 	$(".bairframe").css("color", "black");
 	$(".bgroundframe").css("color", "black");
 	$(".binvulframe").css("color", "black");
+
+	$(".pjumpframe").html(genAttr[8]);
+	$(".vjumpframe").html(genAttr[9]);
+	$(".djumpframe").html(genAttr[10]);
+
+	$(".pjumpframe").css("color", "black");
+	$(".vjumpframe").css("color", "black");
+	$(".djumpframe").css("color", "black");
+	$(".fdashframe").css("color", "black");
+	
 	return;	
 }
 
