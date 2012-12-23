@@ -1,325 +1,289 @@
 {
-	"Attack":
-		[
-			{"ImmensePower":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, {"Attack": 0.10}, "None", 20, "Connect with 5 normal moves"]
-							},
-							{"ver2":
-								[1, {"Attack": 0.10}, "None", 20, "Connect with 3 special moves"]
-							},
-							{"ver3":
-								[1, {"Attack": 0.10}, "None", 20, "Get hit by 2 special moves"]
-							},
-							{"ver4":
-								[1, {"Attack": 0.10}, "None", 20, "Your partner connects with a launcher"]
-							},
-							{"ver5":
-								[1, {"Attack": 0.10}, "None", 20, "Block 5 attacks"]
-							},
-							{"ver6":
-								[1, {"Attack": 0.10}, "None", 20, "Have 4 of your attacks blocked"]
-							},
-							{"ver7":
-								[1, {"Attack": 0.10}, "None", 20, "Perform a Cross Cancel"]
-							}
-						]							
-					},
-					{"level2":
-						[
-							{"ver1":
-								[1, {"Attack": 0.20}, {"Speed": -0.10}, 20, "Connect with 10 normal moves"]
-							},
-							{"ver2":
-								[1, {"Attack": 0.20}, "None", 20, "Connect with a launcher"]
-							}
-						]
-					},
-					{"level3":
-						[
-							{"ver1":
-								[1, {"Attack": 0.30}, "None", 10, "Activate Pandora Mode"]
-							}
-						]
-					}
-				]
-			}
-		],
-	"Defense":
-		[
-			{"Iron Wall":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, {"Defense": 0.10}, "None", 20, "Connect with 5 normal moves"]
-							},
-							{"ver2":
-								[1, {"Defense": 0.10}, "None", 20, "Get hit by 4 normal moves"]
-							},
-							{"ver3":
-								[1, {"Defense": 0.10}, "None", 20, "Peform a Cross Cancel"]
-							},
-							{"ver4":
-								[1, {"Defense": 0.10}, "None", 20, "Get hit by 2 special moves"]
-							},
-							{"ver5":
-								[1, {"Defense": 0.10}, "None", 20, "Block 5 attacks"]
-							}
-						]
-					},
-					{"level2":
-						[
-							{"ver1":
-								[1, {"Defense": 0.20}, {"Attack": -0.10}, 15, "Get hit by 8 normal moves"]
-							},
-							{"ver2":
-								[1, {"Defense": 0.20}, {"Attack": -0.10}, 15, "Get hit by 3 normal moves"]
-							}
-						]
-					},
-					{"level3":
-						[
-							{"ver1":
-								[1, {"Defense": 0.30}, "None", 15, "Your opponent activates Pandora mode"]
-							}
-						]
-					}
-				]
-			},
-			{"Fortitude":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, {"Damage Reduction": 100}, "None", 10, "Get hit by 4 normal moves"]
-							},
-							{"ver2":
-								[1, {"Damage Reduction": 100}, "None", 20, "Connect with 3 special moves"]
-							},
-							{"ver3":
-								[1, {"Damage Reduction": 100}, "None", 20, "Get hit by 2 special moves"]
-							},
-							{"ver4":
-								[1, {"Damage Reduction": 100}, "None", 20, "Perform a cross cancel"]
-							},
-							{"ver5":
-								[1, {"Damage Reduction": 100}, "None", 20, "Your partner connects with a launcher"]
-							},
-							{"ver6":
-								[1, {"Damage Reduction": 100}, "None", 20, "Get hit by an EX special move"]
-							},
-							{"ver7":
-								[1, {"Damage Reduction": 100}, "None", 20, "Get hit by a 5 hit combo"]
-							},
-							{"ver8":
-								[1, {"Damage Reduction": 100}, "None", 20, "Block 5 attacks"]
-							},
-							{"ver9":
-								[1, {"Damage Reduction": 100}, "None", 20, "Have 4 of your attacks blocked"]
-							}
-						]
-					},
-					{"level2":
-						[
-							{"ver1":
-								[1, {"Damage Reduction": 160}, "None", 10, "Activate Pandora Mode"]
-							}
-						]
-					}
-				]
-			}
-		],
-	"Speed":
-		[
-			{"Divine Speed":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, {"Speed": 0.10}, "None", 20, "Connect with 5 normal moves"]
-							},
-							{"ver2":
-								[1, {"Speed": 0.10}, "None", 20, "Get hit by 4 normal moves"]
-							},
-							{"ver3":
-								[1, {"Speed": 0.10}, "None", 20, "Connect with 3 special moves"]
-							},
-							{"ver4":
-								[1, {"Speed": 0.10}, "None", 20, "Your partner connects with a launcher"]
-							},
-							{"ver5":
-								[1, {"Speed": 0.10}, "None", 20, "Land a counter hit"]
-							},
-							{"ver6":
-								[1, {"Speed": 0.10}, "None", 20, "Block 5 attacks"]
-							},
-							{"ver7":
-								[1, {"Speed": 0.10}, "None", 20, "Connect with 5 normal moves"]
-							}
-						]
-					},
-					{"level2":
-						[
-							{"ver1":
-								[1, {"Speed": 0.15}, {"Defense": -0.08}, 15, "Connect with 10 normal moves"]
-							},
-							{"ver2":
-								[1, {"Speed": 0.15}, {"Defense": -0.08}, 15, "Connect with 4 special moves"]
-							}
-						]
-					},
-					{"level3":
-						[
-							{"ver1":
-								[1, {"Speed": 0.20}, {"Defense": -0.08}, 15, "Activate Pandora Mode"]
-							}
-						]
-					}
-				]
-			}
-		],
-	"Cross Gauge":
-		[
-			{"Onslaught":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, {"Cross Gauge Acquisition": 0.20}, "None", 20, "Connect with 3 special moves"]
-							},
-							{"ver2":
-								[1, {"Cross Gauge Acquisition": 0.20}, "None", 20, "Land a reversal"]
-							},
-							{"ver3":
-								[1, {"Cross Gauge Acquisition": 0.20}, "None", 20, "Your partnet connects with a launcher"]
-							}
-						]
-					},
-					{"level2":
-						[
-							{"ver1":
-								[1, {"Cross Gauge Acquisition": 0.40}, "None", 15, "Have 4 of your attacks blocked"]
-							},
-							{"ver2":
-								[1, {"Cross Gauge Acquisition": 0.40}, "None", 15, "Connect with a launcher"]
-							}
-						]
-					}
-				]
-			},
-			{"Proficiency":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, {"Cross Gauge Usage Reduction": 0.20}, {"Speed": 0.10}, 20, "Connect with 5 normal moves"]
-							},
-							{"ver2":
-								[1, {"Cross Gauge Usage Reduction": 0.20}, "None", 20, "Get hit by 4 normal moves"]
-							},
-							{"ver3":
-								[1, {"Cross Gauge Usage Reduction": 0.20}, {"Speed": 0.10}, 20, "Connect with 3 special moves"]
-							},
-							{"ver4":
-								[1, {"Cross Gauge Usage Reduction": 0.20}, "None", 20, "Get hit by 2 special moves"]
-							}
-						]
-					},
-					{"level3":
-						[
-							{"ver1":
-								[1, {"Cross Gauge Usage Reduction": 0.40}, "None", 10, "Activate Pandora Mode"]
-							}
-						]
-					}
-				]
-			}
-		],
-	"Vitality":
-		[
-			{"Life Force":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, {"Vitality Gradual Restoration": 80}, "None", 5, "Get hit by 2 special moves"]
-							}
-						]
-					}
-				]
-			},
-			{"Harmonize":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, {"Vitality Instant Restoration": 60}, "None", 5, "Get hit by 2 special moves"]
-							}
-						]
-					}
-				]
-			}
-		],
-	"Assist":
-		[
-			{"Easy Input":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, "Special Moves become easier to do", "Attack decreases by 10% during battle", 0, "None"]
-							}
-						]
-					}
-				]
-			},
-			{"Super Easy Input":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, "Special Moves become very easy to do", "Attack decreases by 10% during battle", 0, "None"]
-							}
-						]
-					}
-				]
-			},
-			{"Cancel Assist":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, "Special Move cancels become easy to do", "Attack decreases by 10% during battle", 0, "None"]
-							}
-						]
-					}
-				]
-			},
-			{"Auto Throw Escape":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, "Escape from throws automatically", "Cross Gauge decreases by 1/2 block when activated", 0, "None"]
-							}
-						]
-					}
-				]
-			},
-			{"Auto Block":
-				[
-					{"level1":
-						[
-							{"ver1":
-								[1, "Block Attacks automatically", "Cross Gauge decreases by 1 block when activated", 0, "None"]
-							}
-						]
-					}
-				]
-			}
-		]
+	"gems":
+	[
+		{
+			"Attack":
+			[
+				{"ImmensePower":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, {"Attack": 0.10}, "None", 20, "Connect with 5 normal moves"]
+								},
+								{"ver2":
+									[1, {"Attack": 0.10}, "None", 20, "Connect with 3 special moves"]
+								},
+								{"ver3":
+									[1, {"Attack": 0.10}, "None", 20, "Get hit by 2 special moves"]
+								},
+								{"ver4":
+									[1, {"Attack": 0.10}, "None", 20, "Your partner connects with a launcher"]
+								},
+								{"ver5":
+									[1, {"Attack": 0.10}, "None", 20, "Block 5 attacks"]
+								},
+								{"ver6":
+									[1, {"Attack": 0.10}, "None", 20, "Have 4 of your attacks blocked"]
+								},
+								{"ver7":
+									[1, {"Attack": 0.10}, "None", 20, "Perform a Cross Cancel"]
+								}
+							]							
+						},
+						{"level2":
+							[
+								{"ver1":
+									[1, {"Attack": 0.20}, {"Speed": -0.10}, 20, "Connect with 10 normal moves"]
+								},
+								{"ver2":
+									[1, {"Attack": 0.20}, "None", 20, "Connect with a launcher"]
+								}
+							]
+						},
+						{"level3":
+							[
+								{"ver1":
+									[1, {"Attack": 0.30}, "None", 10, "Activate Pandora Mode"]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Defense":
+			[
+				{"Iron Wall":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, {"Defense": 0.10}, "None", 20, "Connect with 5 normal moves"]
+								},
+								{"ver2":
+									[1, {"Defense": 0.10}, "None", 20, "Get hit by 4 normal moves"]
+								},
+								{"ver3":
+									[1, {"Defense": 0.10}, "None", 20, "Peform a Cross Cancel"]
+								},
+								{"ver4":
+									[1, {"Defense": 0.10}, "None", 20, "Get hit by 2 special moves"]
+								},
+								{"ver5":
+									[1, {"Defense": 0.10}, "None", 20, "Block 5 attacks"]
+								}
+							]
+						},
+						{"level2":
+							[
+								{"ver1":
+									[1, {"Defense": 0.20}, {"Attack": -0.10}, 15, "Get hit by 8 normal moves"]
+								},
+								{"ver2":
+									[1, {"Defense": 0.20}, {"Attack": -0.10}, 15, "Get hit by 3 normal moves"]
+								}
+							]
+						},
+						{"level3":
+							[
+								{"ver1":
+									[1, {"Defense": 0.30}, "None", 15, "Your opponent activates Pandora mode"]
+								}
+							]
+						}
+					]
+				},
+				{"Fortitude":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, {"Damage Reduction": 100}, "None", 10, "Get hit by 4 normal moves"]
+								},
+								{"ver2":
+									[1, {"Damage Reduction": 100}, "None", 20, "Connect with 3 special moves"]
+								},
+								{"ver3":
+									[1, {"Damage Reduction": 100}, "None", 20, "Get hit by 2 special moves"]
+								},
+								{"ver4":
+									[1, {"Damage Reduction": 100}, "None", 20, "Perform a cross cancel"]
+								},
+								{"ver5":
+									[1, {"Damage Reduction": 100}, "None", 20, "Your partner connects with a launcher"]
+								},
+								{"ver6":
+									[1, {"Damage Reduction": 100}, "None", 20, "Get hit by an EX special move"]
+								},
+								{"ver7":
+									[1, {"Damage Reduction": 100}, "None", 20, "Get hit by a 5 hit combo"]
+								},
+								{"ver8":
+									[1, {"Damage Reduction": 100}, "None", 20, "Block 5 attacks"]
+								},
+								{"ver9":
+									[1, {"Damage Reduction": 100}, "None", 20, "Have 4 of your attacks blocked"]
+								}
+							]
+						},
+						{"level2":
+							[
+								{"ver1":
+									[1, {"Damage Reduction": 160}, "None", 10, "Activate Pandora Mode"]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Cross Gauge":
+			[
+				{"Onslaught":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, {"Cross Gauge Acquisition": 0.20}, "None", 20, "Connect with 3 special moves"]
+								},
+								{"ver2":
+									[1, {"Cross Gauge Acquisition": 0.20}, "None", 20, "Land a reversal"]
+								},
+								{"ver3":
+									[1, {"Cross Gauge Acquisition": 0.20}, "None", 20, "Your partnet connects with a launcher"]
+								}
+							]
+						},
+						{"level2":
+							[
+								{"ver1":
+									[1, {"Cross Gauge Acquisition": 0.40}, "None", 15, "Have 4 of your attacks blocked"]
+								},
+								{"ver2":
+									[1, {"Cross Gauge Acquisition": 0.40}, "None", 15, "Connect with a launcher"]
+								}
+							]
+						}
+					]
+				},
+				{"Proficiency":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, {"Cross Gauge Usage Reduction": 0.20}, {"Speed": 0.10}, 20, "Connect with 5 normal moves"]
+								},
+								{"ver2":
+									[1, {"Cross Gauge Usage Reduction": 0.20}, "None", 20, "Get hit by 4 normal moves"]
+								},
+								{"ver3":
+									[1, {"Cross Gauge Usage Reduction": 0.20}, {"Speed": 0.10}, 20, "Connect with 3 special moves"]
+								},
+								{"ver4":
+									[1, {"Cross Gauge Usage Reduction": 0.20}, "None", 20, "Get hit by 2 special moves"]
+								}
+							]
+						},
+						{"level3":
+							[
+								{"ver1":
+									[1, {"Cross Gauge Usage Reduction": 0.40}, "None", 10, "Activate Pandora Mode"]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Vitality":
+			[
+				{"Life Force":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, {"Vitality Gradual Restoration": 80}, "None", 5, "Get hit by 2 special moves"]
+								}
+							]
+						}
+					]
+				},
+				{"Harmonize":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, {"Vitality Instant Restoration": 60}, "None", 5, "Get hit by 2 special moves"]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Assist":
+			[
+				{"Easy Input":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, "Special Moves become easier to do", "Attack decreases by 10% during battle", 0, "None"]
+								}
+							]
+						}
+					]
+				},
+				{"Super Easy Input":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, "Special Moves become very easy to do", "Attack decreases by 10% during battle", 0, "None"]
+								}
+							]
+						}
+					]
+				},
+				{"Cancel Assist":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, "Special Move cancels become easy to do", "Attack decreases by 10% during battle", 0, "None"]
+								}
+							]
+						}
+					]
+				},
+				{"Auto Throw Escape":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, "Escape from throws automatically", "Cross Gauge decreases by 1/2 block when activated", 0, "None"]
+								}
+							]
+						}
+					]
+				},
+				{"Auto Block":
+					[
+						{"level1":
+							[
+								{"ver1":
+									[1, "Block Attacks automatically", "Cross Gauge decreases by 1 block when activated", 0, "None"]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
 }
