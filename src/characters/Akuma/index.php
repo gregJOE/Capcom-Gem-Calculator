@@ -1,9 +1,24 @@
-<html>
+	<html>
 	<head>
 		<title> SF X T Gem Calculator - Akuma</title>
 		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 		<script type="text/javascript" src="../../js/gemEffects.js"></script>
+		<script type="text/javascript" src="../../js/textManip.js"></script>
+		<style>
+	        #dialog-form { font-size: 62.5%; }
+	        
+	        input.text { margin-bottom:12px; width:95%; padding: .4em; }
+	        fieldset { padding:0; border:0; margin-top:25px; }
+	        h1 { font-size: 1.2em; margin: .6em 0; }
+	        div#users-contain { width: 350px; margin: 20px 0; }
+	        div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+	        div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+	        .ui-dialog .ui-state-error { padding: .3em; }
+	        .validateTips { border: 1px solid transparent; padding: 0.3em; }
+    	</style>
 	</head>
 	<body>
 		<div id='header'> <h1> SF X T Gem Calculator - Akuma</h1> </div>
@@ -20,49 +35,49 @@
 						</br>
 						<select id="gems1" name="Gem 1">
 							<option class="gem" value="none">None</option>
-							<option class="gem" value="immenseLvl1">Immense Power Lvl. 1</option>
-							<option class="gem" value="immenseLvl2">Immense Power Lvl. 2</option>
-							<option class="gem" value="immenseLvl3">Immense Power Lvl. 3</option>
-							<option class="gem" value="ironWallLvl1">Iron Wall Lvl. 1</option>
-							<option class="gem" value="ironWallLvl2">Iron Wall Lvl. 2</option>
-							<option class="gem" value="ironWallLvl3">Iron Wall Lvl. 3</option>
-							<option class="gem" value="fortLvl1">Fortitude Lvl. 1 </option>
-							<option class="gem" value="fortLvl2">Fortitude Lvl. 2 </option>
-							<option class="gem" value="divineSpeedLvl1">Divine Speed Lvl. 1</option>
-							<option class="gem" value="divineSpeedLvl2">Divine Speed Lvl. 2</option>
-							<option class="gem" value="divineSpeedLvl3">Divine Speed Lvl. 3</option>
-                                                        <option class="gem" value="onslaughtLvl1">Onslaught Lvl. 1</option>
-                                                        <option class="gem" value="onslaughtLvl2">Onslaught Lvl. 2</option>
-                                                        <option class="gem" value="proficiencyLvl1">Proficiency Lvl. 1</option>
-                                                        <option class="gem" value="proficiencyLvl2">Proficiency Lvl. 2</option>
-                                                        <option class="gem" value="lifeForceLvl1">Life Force Lvl. 1</option>
-                                                        <option class="gem" value="harmonizeLvl1">Harmonize Lvl. 1</option>
+							<option class="gem" value="immenseLevel1">Immense Power Level. 1</option>
+							<option class="gem" value="immenseLevel2">Immense Power Level. 2</option>
+							<option class="gem" value="immenseLevel3">Immense Power Level. 3</option>
+							<option class="gem" value="ironWallLevel1">Iron Wall Level. 1</option>
+							<option class="gem" value="ironWallLevel2">Iron Wall Level. 2</option>
+							<option class="gem" value="ironWallLevel3">Iron Wall Level. 3</option>
+							<option class="gem" value="fortLevel1">Fortitude Level. 1 </option>
+							<option class="gem" value="fortLevel2">Fortitude Level. 2 </option>
+							<option class="gem" value="divineSpeedLevel1">Divine Speed Level. 1</option>
+							<option class="gem" value="divineSpeedLevel2">Divine Speed Level. 2</option>
+							<option class="gem" value="divineSpeedLevel3">Divine Speed Level. 3</option>
+							<option class="gem" value="onslaughtLevel1">Onslaught Level. 1</option>
+							<option class="gem" value="onslaughtLevel2">Onslaught Level. 2</option>
+							<option class="gem" value="proficiencyLevel1">Proficiency Level. 1</option>
+							<option class="gem" value="proficiencyLevel2">Proficiency Level. 2</option>
+							<option class="gem" value="lifeForceLevel1">Life Force Level. 1</option>
+							<option class="gem" value="harmonizeLevel1">Harmonize Level. 1</option>
 							<option class="gem" value="easyInput">Easy Input</option>
-                                                        <option class="gem" value="superEasyInput">Super Easy Input</option>
-                                                        <option class="gem" value="canceAssist">Cancel Assist</option>
-                                                        <option class="gem" value="autoThrowEscape">Auto Throw Escape</option>
-                                                        <option class="gem" value="autoBlock">Auto Block</option>
+							<option class="gem" value="superEasyInput">Super Easy Input</option>
+							<option class="gem" value="canceAssist">Cancel Assist</option>
+							<option class="gem" value="autoThrowEscape">Auto Throw Escape</option>
+							<option class="gem" value="autoBlock">Auto Block</option>
 						</select>
 
 						 <select id="gems2" name="Gem 2">
                                                         <option class="gem" value="none">None</option>
-                                                        <option class="gem" value="immenseLvl1">Immense Power Lvl. 1</option>
-                                                        <option class="gem" value="immenseLvl2">Immense Power Lvl. 2</option>
-                                                        <option class="gem" value="immenseLvl3">Immense Power Lvl. 3</option>
-							<option class="gem" value="ironWallLvl1">Iron Wall Lvl. 1</option>
-                                                        <option class="gem" value="ironWallLvl2">Iron Wall Lvl. 2</option>
-                                                        <option class="gem" value="ironWallLvl3">Iron Wall Lvl. 3</option>
-                                                        <option class="gem" value="fortLvl1">Fortitude Lvl. 1 </option>
-                                                        <option class="gem" value="fortLvl2">Fortitude Lvl. 2 </option>
-							<option class="gem" value="divineSpeedLvl1">Divine Speed Lvl. 1</option>
-							<option class="gem" value="divineSpeedLvl2">Divine Speed Lvl. 2</option>
-							<option class="gem" value="divineSpeedLvl3">Divine Speed Lvl. 3</option>
-                                                        <option class="gem" value="onslaughtLvl1">Onslaught Lvl. 1</option>
-                                                        <option class="gem" value="onslaughtLvl2">Onslaught Lvl. 2</option>
-                                                        <option class="gem" value="proficiencyLvl1">Proficiency Lvl. 1</option>
-                                                        <option class="gem" value="proficiencyLvl2">Proficiency Lvl. 2</option> 
-							<option class="gem" value="lifeForceLvl1">Life Force Lvl. 1</option>
-                                                        <option class="gem" value="harmonizeLvl1">Harmonize Lvl. 1</option>
+                                                        <option class="gem" value="immenseLevel1">Immense Power Level. 1</option>
+                                                        <option class="gem" value="immenseLevel2">Immense Power Level. 2</option>
+                                                        <option class="gem" value="immenseLevel3">Immense Power Level. 3</option>
+							<option class="gem" value="ironWallLevel1">Iron Wall Level. 1</option>
+                                                        <option class="gem" value="ironWallLevel2">Iron Wall Level. 2</option>
+                                                        <option class="gem" value="ironWallLevel3">Iron Wall Level. 3</option>
+                                                        <option class="gem" value="fortLevel1">Fortitude Level. 1 </option>
+                                                        <option class="gem" value="fortLevel2">Fortitude Level. 2 </option>
+							<option class="gem" value="divineSpeedLevel1">Divine Speed Level. 1</option>
+							<option class="gem" value="divineSpeedLevel2">Divine Speed Level. 2</option>
+							<option class="gem" value="divineSpeedLevel3">Divine Speed Level. 3</option>
+                                                        <option class="gem" value="onslaughtLevel1">Onslaught Level. 1</option>
+                                                        <option class="gem" value="onslaughtLevel2">Onslaught Level. 2</option>
+                                                        <option class="gem" value="proficiencyLevel1">Proficiency Level. 1</option>
+                                                        <option class="gem" value="proficiencyLevel2">Proficiency Level. 2</option> 
+							<option class="gem" value="lifeForceLevel1">Life Force Level. 1</option>
+                                                        <option class="gem" value="harmonizeLevel1">Harmonize Level. 1</option>
                                                         <option class="gem" value="easyInput">Easy Input</option>
                                                         <option class="gem" value="superEasyInput">Super Easy Input</option>
                                                         <option class="gem" value="canceAssist">Cancel Assist</option>
@@ -72,23 +87,23 @@
 
 						 <select id="gems3" name="Gem 3">
                                                         <option class="gem" value="none">None</option>
-                                                        <option class="gem" value="immenseLvl1">Immense Power Lvl. 1</option>
-                                                        <option class="gem" value="immenseLvl2">Immense Power Lvl. 2</option>
-                                                        <option class="gem" value="immenseLvl3">Immense Power Lvl. 3</option>
-							<option class="gem" value="ironWallLvl1">Iron Wall Lvl. 1</option>
-                                                        <option class="gem" value="ironWallLvl2">Iron Wall Lvl. 2</option>
-                                                        <option class="gem" value="ironWallLvl3">Iron Wall Lvl. 3</option>
-                                                        <option class="gem" value="fortLvl1">Fortitude Lvl. 1 </option>
-                                                        <option class="gem" value="fortLvl2">Fortitude Lvl. 2 </option>
-							<option class="gem" value="divineSpeedLvl1">Divine Speed Lvl. 1</option>
-                                                        <option class="gem" value="divineSpeedLvl2">Divine Speed Lvl. 2</option>
-                                                        <option class="gem" value="divineSpeedLvl3">Divine Speed Lvl. 3</option>
-                                                        <option class="gem" value="onslaughtLvl1">Onslaught Lvl. 1</option>
-							<option class="gem" value="onslaughtLvl2">Onslaught Lvl. 2</option>
-							<option class="gem" value="proficiencyLvl1">Proficiency Lvl. 1</option>
-							<option class="gem" value="proficiencyLvl2">Proficiency Lvl. 2</option>
-                                                        <option class="gem" value="lifeForceLvl1">Life Force Lvl. 1</option>
-                                                        <option class="gem" value="harmonizeLvl1">Harmonize Lvl. 1</option>
+                                                        <option class="gem" value="immenseLevel1">Immense Power Level. 1</option>
+                                                        <option class="gem" value="immenseLevel2">Immense Power Level. 2</option>
+                                                        <option class="gem" value="immenseLevel3">Immense Power Level. 3</option>
+							<option class="gem" value="ironWallLevel1">Iron Wall Level. 1</option>
+                                                        <option class="gem" value="ironWallLevel2">Iron Wall Level. 2</option>
+                                                        <option class="gem" value="ironWallLevel3">Iron Wall Level. 3</option>
+                                                        <option class="gem" value="fortLevel1">Fortitude Level. 1 </option>
+                                                        <option class="gem" value="fortLevel2">Fortitude Level. 2 </option>
+							<option class="gem" value="divineSpeedLevel1">Divine Speed Level. 1</option>
+                                                        <option class="gem" value="divineSpeedLevel2">Divine Speed Level. 2</option>
+                                                        <option class="gem" value="divineSpeedLevel3">Divine Speed Level. 3</option>
+                                                        <option class="gem" value="onslaughtLevel1">Onslaught Level. 1</option>
+							<option class="gem" value="onslaughtLevel2">Onslaught Level. 2</option>
+							<option class="gem" value="proficiencyLevel1">Proficiency Level. 1</option>
+							<option class="gem" value="proficiencyLevel2">Proficiency Level. 2</option>
+                                                        <option class="gem" value="lifeForceLevel1">Life Force Level. 1</option>
+                                                        <option class="gem" value="harmonizeLevel1">Harmonize Level. 1</option>
                                                         <option class="gem" value="easyInput">Easy Input</option>
                                                         <option class="gem" value="superEasyInput">Super Easy Input</option>
                                                         <option class="gem" value="canceAssist">Cancel Assist</option>
@@ -315,9 +330,14 @@
 							echo "\t\t\t\t\t\t</tr>\n";
 						}
 					?>
-
-				 </div>
+					</div>
 			</div> 		
+		</div>
+
+		<div id="dialog-form" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-dialog-buttons">
+			<p class="validateTips">Select Gem Type</p>
+			<select id="gemType" name="Gem Type">
+			</select>
 		</div>
 	</body>
 </html>

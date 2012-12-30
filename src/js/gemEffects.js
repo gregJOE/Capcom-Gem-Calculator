@@ -13,7 +13,30 @@ var regExpDamage = /[\d]+(.|,|x|f)|[\d]+/g;
 /* READY FUNCTION */
 $(document).ready(function(){
 	/* there has to be an easier way of doing this */
-	
+
+	$( "#dialog-form" ).dialog({
+		autoOpen: false,
+		height: 300,
+		width: 350,
+		modal: true,
+		buttons: 
+		{
+			"Submit": 
+				function() 
+				{
+					alert("we here now");
+					$( this ).dialog( "close" );
+				},
+			Cancel: 
+				function() 
+				{
+					$( this ).dialog( "close" );
+				}
+		},
+		close: function() {
+
+		}
+	});
 	$('#characterData .damage').each(function() 
 	{
 		damageValues.push($(this).html());
@@ -38,8 +61,37 @@ $(document).ready(function(){
 
 /* watch for any changes to the gem options and call a function immediately */
 $('#gems1').live('change', function(){
-	var val = $("#gems1").val();
-	calculateGemEffects(val);
+	var gemtype = $("#gems1").val();
+	console.log(gemtype + " nad ");
+	console.log($('#gemType option').size());
+	$.getJSON('../../json/gems.json', function(data) 
+	{
+		$.each(data, function(key, val) 
+		{
+			
+			switch (gemtype)
+			{
+				case "immenseLevel1":
+					console.log(val[0].Attack[0].ImmensePower[0].level1[0].ver1);
+					console.log(val[0].Attack[0].ImmensePower[0].level1[1].ver2);
+
+					if ($('#gemType option').size() == 0)
+					{
+						$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+							val[0].Attack[0].ImmensePower[0].level1[0].ver1[4]));
+						$("#gemType").append($("<option></option>").attr("value","ver2").text("Version 2: " + 
+							val[0].Attack[0].ImmensePower[1].level2[0].ver1[4])); 
+					}
+					break;
+				case "immenseLevel2":
+					console.log(val[0].Attack[0].ImmensePower[1].level2[0]);
+					break;
+			}
+
+		});
+	});
+	$( "#dialog-form" ).dialog("open");
+	calculateGemEffects(gemtype);
 });
 
 $('#gems2').live('change', function(){

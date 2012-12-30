@@ -4,33 +4,34 @@
 		{
 			"Attack":
 			[
-				{"ImmensePower":
-					[
-						{"level1":
-							[
-								{"ver1":
-									[1, {"Attack": 0.10}, "None", 20, "Connect with 5 normal moves"]
-								},
-								{"ver2":
-									[1, {"Attack": 0.10}, "None", 20, "Connect with 3 special moves"]
-								},
-								{"ver3":
-									[1, {"Attack": 0.10}, "None", 20, "Get hit by 2 special moves"]
-								},
-								{"ver4":
-									[1, {"Attack": 0.10}, "None", 20, "Your partner connects with a launcher"]
-								},
-								{"ver5":
-									[1, {"Attack": 0.10}, "None", 20, "Block 5 attacks"]
-								},
-								{"ver6":
-									[1, {"Attack": 0.10}, "None", 20, "Have 4 of your attacks blocked"]
-								},
-								{"ver7":
-									[1, {"Attack": 0.10}, "None", 20, "Perform a Cross Cancel"]
-								}
-							]							
-						},
+				{
+					"ImmensePower":
+						[
+							{"level1":
+								[
+									{"ver1":
+										[1, {"Attack": 0.10}, "None", 20, "Connect with 5 normal moves"]
+									},
+									{"ver2":
+										[1, {"Attack": 0.10}, "None", 20, "Connect with 3 special moves"]
+									},
+									{"ver3":
+										[1, {"Attack": 0.10}, "None", 20, "Get hit by 2 special moves"]
+									},
+									{"ver4":
+										[1, {"Attack": 0.10}, "None", 20, "Your partner connects with a launcher"]
+									},
+									{"ver5":
+										[1, {"Attack": 0.10}, "None", 20, "Block 5 attacks"]
+									},
+									{"ver6":
+										[1, {"Attack": 0.10}, "None", 20, "Have 4 of your attacks blocked"]
+									},
+									{"ver7":
+										[1, {"Attack": 0.10}, "None", 20, "Perform a Cross Cancel"]
+									}
+								]							
+							},
 						{"level2":
 							[
 								{"ver1":
@@ -55,7 +56,7 @@
 		{
 			"Defense":
 			[
-				{"Iron Wall":
+				{"IronWall":
 					[
 						{"level1":
 							[
@@ -140,7 +141,7 @@
 			]
 		},
 		{
-			"Cross Gauge":
+			"CrossGauge":
 			[
 				{"Onslaught":
 					[
@@ -228,7 +229,7 @@
 		{
 			"Assist":
 			[
-				{"Easy Input":
+				{"EasyInput":
 					[
 						{"level1":
 							[
@@ -239,7 +240,7 @@
 						}
 					]
 				},
-				{"Super Easy Input":
+				{"SuperEasyInput":
 					[
 						{"level1":
 							[
@@ -250,7 +251,7 @@
 						}
 					]
 				},
-				{"Cancel Assist":
+				{"CancelAssist":
 					[
 						{"level1":
 							[
@@ -261,7 +262,7 @@
 						}
 					]
 				},
-				{"Auto Throw Escape":
+				{"AutoThrowEscape":
 					[
 						{"level1":
 							[
@@ -272,7 +273,7 @@
 						}
 					]
 				},
-				{"Auto Block":
+				{"AutoBlock":
 					[
 						{"level1":
 							[
