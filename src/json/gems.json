@@ -32,16 +32,16 @@
 									}
 								]							
 							},
-						{"level2":
-							[
-								{"ver1":
-									[1, {"Attack": 0.20}, {"Speed": -0.10}, 20, "Connect with 10 normal moves"]
-								},
-								{"ver2":
-									[1, {"Attack": 0.20}, "None", 20, "Connect with a launcher"]
-								}
-							]
-						},
+							{"level2":
+								[
+									{"ver1":
+										[1, {"Attack": 0.20}, {"Speed": -0.10}, 20, "Connect with 10 normal moves"]
+									},
+									{"ver2":
+										[1, {"Attack": 0.20}, "None", 20, "Connect with a launcher"]
+									}
+								]
+							},
 						{"level3":
 							[
 								{"ver1":
@@ -202,7 +202,7 @@
 		{
 			"Vitality":
 			[
-				{"Life Force":
+				{"LifeForce":
 					[
 						{"level1":
 							[

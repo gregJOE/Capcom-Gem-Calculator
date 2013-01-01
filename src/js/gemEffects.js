@@ -72,24 +72,228 @@ $('#gems1').live('change', function(){
 			switch (gemtype)
 			{
 				case "immenseLevel1":
-					console.log(val[0].Attack[0].ImmensePower[0].level1[0].ver1);
-					console.log(val[0].Attack[0].ImmensePower[0].level1[1].ver2);
 
-					if ($('#gemType option').size() == 0)
-					{
-						$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
-							val[0].Attack[0].ImmensePower[0].level1[0].ver1[4]));
-						$("#gemType").append($("<option></option>").attr("value","ver2").text("Version 2: " + 
-							val[0].Attack[0].ImmensePower[1].level2[0].ver1[4])); 
-					}
+					$("#gemType").empty();
+					
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[0].Attack[0].ImmensePower[0].level1[0].ver1[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver2").text("Version 2: " + 
+						val[0].Attack[0].ImmensePower[0].level1[1].ver2[4])); 
+					$("#gemType").append($("<option></option>").attr("value","ver2").text("Version 3: " + 
+						val[0].Attack[0].ImmensePower[0].level1[2].ver3[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver2").text("Version 4: " + 
+						val[0].Attack[0].ImmensePower[0].level1[3].ver4[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver2").text("Version 5: " + 
+						val[0].Attack[0].ImmensePower[0].level1[4].ver5[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver2").text("Version 6: " + 
+						val[0].Attack[0].ImmensePower[0].level1[5].ver6[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver2").text("Version 7: " + 
+						val[0].Attack[0].ImmensePower[0].level1[6].ver7[4]));						
+					
 					break;
 				case "immenseLevel2":
-					console.log(val[0].Attack[0].ImmensePower[1].level2[0]);
+
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[0].Attack[0].ImmensePower[1].level2[0].ver1[4]));
+						
+					$("#gemType").append($("<option></option>").attr("value","ver2").text("Version 2: " + 
+						val[0].Attack[0].ImmensePower[1].level2[1].ver2[4]));
+
+					break;
+				case "immenseLevel3":
+
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[0].Attack[0].ImmensePower[2].level3[0].ver1[4]));
+
+					break;
+				case "ironWallLevel1":
+					console.log (val[1].Defense[0].IronWall[0].level1[0].ver1[4])
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[1].Defense[0].IronWall[0].level1[0].ver1[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 2: " + 
+						val[1].Defense[0].IronWall[0].level1[1].ver2[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 3: " + 
+						val[1].Defense[0].IronWall[0].level1[2].ver3[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 4: " + 
+						val[1].Defense[0].IronWall[0].level1[3].ver4[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 5: " + 
+						val[1].Defense[0].IronWall[0].level1[4].ver5[4]));					
+
+					break;
+				case "ironWallLevel2":
+
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[1].Defense[0].IronWall[1].level2[0].ver1[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 2: " + 
+						val[1].Defense[0].IronWall[1].level2[1].ver2[4]));
+
+					break;
+				case "ironWallLevel3":
+
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[1].Defense[0].IronWall[2].level3[0].ver1[4]));
+
+					break;
+
+				case "ironWallLevel3":
+
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[1].Defense[0].IronWall[2].level3[0].ver1[4]));
+
+					break;
+
+				case "fortLevel1":
+
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[1].Defense[1].Fortitude[0].level1[0].ver1[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 2: " + 
+						val[1].Defense[1].Fortitude[0].level1[1].ver2[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 3: " + 
+						val[1].Defense[1].Fortitude[0].level1[2].ver3[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 4: " + 
+						val[1].Defense[1].Fortitude[0].level1[3].ver4[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 5: " + 
+						val[1].Defense[1].Fortitude[0].level1[4].ver5[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 6: " + 
+						val[1].Defense[1].Fortitude[0].level1[5].ver6[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 7: " + 
+						val[1].Defense[1].Fortitude[0].level1[6].ver7[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 8: " + 
+						val[1].Defense[1].Fortitude[0].level1[7].ver8[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 9: " + 
+						val[1].Defense[1].Fortitude[0].level1[8].ver9[4]));																																	
+
+					break;
+
+				case "fortLevel2":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[1].Defense[1].Fortitude[1].level2[0].ver1[4]));
+
+					break;
+
+				case "divineSpeedLevel1":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[1].Defense[1].Fortitude[1].level2[0].ver1[4]));
+
+					break;
+				case "divineSpeedLevel2":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[1].Defense[1].Fortitude[1].level2[0].ver1[4]));
+
+					break;
+				case "divineSpeedLevel3":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[1].Defense[1].Fortitude[1].level2[0].ver1[4]));
+
+					break;
+
+				/* update array index once speed gem object gets put into json file 1/1/2013 */
+				case "onslaughtLevel1":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[2].CrossGauge[0].Onslaught[0].level1[0].ver1[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 2: " + 
+						val[2].CrossGauge[0].Onslaught[0].level1[1].ver2[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 3: " + 
+						val[2].CrossGauge[0].Onslaught[0].level1[2].ver3[4]));					
+
+					break;
+				case "onslaughtLevel2":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[2].CrossGauge[0].Onslaught[1].level2[0].ver1[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 2: " + 
+						val[2].CrossGauge[0].Onslaught[1].level2[1].ver2[4]));				
+
+					break;								
+				case "proficiencyLevel1":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[2].CrossGauge[1].Proficiency[0].level1[0].ver1[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 2: " + 
+						val[2].CrossGauge[1].Proficiency[0].level1[1].ver2[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 3: " + 
+						val[2].CrossGauge[1].Proficiency[0].level1[2].ver3[4]));
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 4: " + 
+						val[2].CrossGauge[1].Proficiency[0].level1[3].ver4[4]));
+
+					break;
+
+				/* make sure this is correct. Why is there only a level 3 in the website, but no level 2?
+					Capcom, you're fucking up 1/1/2013
+				*/
+				case "proficiencyLevel2":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[2].CrossGauge[1].Proficiency[1].level3[0].ver1[4]));
+
+					break;
+
+				case "lifeForceLevel1":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[3].Vitality[0].LifeForce[0].level1[0].ver1[4]));
+
+					break;
+
+				case "harmonizeLevel1":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[3].Vitality[1].Harmonize[0].level1[0].ver1[4]));
+
+					break;
+
+				case "easyInput":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[4].Assist[0].EasyInput[0].level1[0].ver1[4]));
+
+					break;
+
+				case "superEasyInput":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[4].Assist[1].SuperEasyInput[0].level1[0].ver1[4]));
+
+					break;
+
+				case "canceAssist":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[4].Assist[2].CancelAssist[0].level1[0].ver1[4]));
+
+					break;
+
+				case "autoThrowEscape":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[4].Assist[3].AutoThrowEscape[0].level1[0].ver1[4]));
+
+					break;
+
+				case "autoBlock":
+					$("#gemType").empty();
+					$("#gemType").append($("<option></option>").attr("value","ver1").text("Version 1: " + 
+						val[4].Assist[4].AutoBlock[0].level1[0].ver1[4]));
+
 					break;
 			}
 
 		});
 	});
+	
+	/* have this return a value before the calculate gemEffects function gets called. Maybe this needs a callback??? */
 	$( "#dialog-form" ).dialog("open");
 	calculateGemEffects(gemtype);
 });
