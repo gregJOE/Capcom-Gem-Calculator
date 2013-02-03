@@ -3,10 +3,6 @@
 		<title> SF X T Gem Calculator - Akuma</title>
 		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-		<script type="text/javascript" src="../../js/gemEffects.js"></script>
-		<script type="text/javascript" src="../../js/textManip.js"></script>
 		<style>
 	        #dialog-form { font-size: 62.5%; }
 	        
@@ -336,8 +332,14 @@
 
 		<div id="dialog-form" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-dialog-buttons">
 			<p class="validateTips">Select Gem Type</p>
-			<select id="gemType" name="Gem Type">
+			<select id="gemType" name="Gem Type" value="None">
 			</select>
 		</div>
 	</body>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="../../js/textManip.js"></script>
+	<script type="text/javascript" src="../../js/gemMenu.js"></script>
+	<script type="text/javascript" src="../../js/gemEffects.js"></script>
+	<script type="text/javascript" src="../../js/underscore.js"></script>
 </html>
