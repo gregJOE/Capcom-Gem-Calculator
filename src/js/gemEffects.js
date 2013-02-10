@@ -13,8 +13,12 @@ var regExpDamage = /[\d]+(.|,|x|f)|[\d]+/g;
 /* READY FUNCTION */
 $(document).ready(function(){
 	/* there has to be an easier way of doing this */
+	$('#characterData .damage').each(function() 
+	{
+		damageValues.push($(this).html());
+	});
 
-	$( "#dialog-form" ).dialog({
+	$( "#dialog-form1" ).dialog({
 		autoOpen: false,
 		height: 300,
 		width: 350,
@@ -24,8 +28,63 @@ $(document).ready(function(){
 			"Submit": 
 				function() 
 				{
-					alert($("#gemType").val());
 					$( this ).dialog( "close" );
+					console.log($("#gems1").val() + " " + $("#gemType1").val());
+					$("#gemsSlot1").val($("#gems1").val() + "-" + $("#gemType1").val());
+				},
+			Cancel: 
+				function() 
+				{
+					$( this ).dialog( "close" );
+				}
+		},
+		close: function() {
+
+		}
+	});
+
+	$( "#dialog-form2" ).dialog({
+		autoOpen: false,
+		height: 300,
+		width: 350,
+		modal: true,
+		buttons: 
+		{
+			"Submit": 
+				function() 
+				{
+					$( this ).dialog( "close" );
+					console.log($("#gems2").val() + " " + $("#gemType2").val());
+					$("#gemsSlot2").val($("#gems2").val() + "-" + $("#gemType2").val());
+				},
+			Cancel: 
+				function() 
+				{
+					$( this ).dialog( "close" );
+				}
+		},
+		close: function() {
+
+		}
+	});
+	$('#characterData .damage').each(function() 
+	{
+		damageValues.push($(this).html());
+	});
+
+	$( "#dialog-form3" ).dialog({
+		autoOpen: false,
+		height: 300,
+		width: 350,
+		modal: true,
+		buttons: 
+		{
+			"Submit": 
+				function() 
+				{
+					$( this ).dialog( "close" );
+					console.log($("#gems3").val() + " " + $("#gemType3").val());
+					$("#gemsSlot3").val($("#gems3").val() + "-" + $("#gemType3").val());
 				},
 			Cancel: 
 				function() 
@@ -61,37 +120,29 @@ $(document).ready(function(){
 
 /* watch for any changes to the gem options and call a function immediately */
 	$('#gems1').on('change', function(){
-		var gemtype, gemVersion;
+		var gem, gemType;
 
-		gemtype = $("#gems1").val();
-		gemVersion = '';
+		gem = $("#gems1").val();
+		gemType = '';
 
 		/* put this into a function 2/3/2013 */
-		if (gemtype !== "none")
+		if (gem !== "none")
 		{
 			$.getJSON('../../json/gems.json', function(data) 
 			{
 				$.each(data, function(key, val) 
 				{
-					createPopUpWindow(gemtype, val);
+					createPopUpWindow(gem, val, "1");
 				});
 			
-			
 				/* have this return a value before the calculate gemEffects function gets called. Maybe this needs a callback??? */
-				$( "#dialog-form" ).dialog("open");
+				$( "#dialog-form1" ).dialog("open");
 			});
 		}
 		else
 		{
-			$("#gemType").val("None");
+			$("#gemType1").val("None");
 		}
-
-		gemVersion = $("#gemType").val();
-
-		console.log(gemtype + " nad ");
-		console.log(gemVersion + " nonnasda");
-		/* calculateGemEffects(gemtype, gemVersion); */ 
-
 	});
 
 	$('#gems2').on('change', function(){
@@ -107,24 +158,18 @@ $(document).ready(function(){
 			{
 				$.each(data, function(key, val) 
 				{
-					createPopUpWindow(gemtype, val);
+					createPopUpWindow(gemtype, val, "2");
 				});
 			
 			
 				/* have this return a value before the calculate gemEffects function gets called. Maybe this needs a callback??? */
-				$( "#dialog-form" ).dialog("open");
+				$( "#dialog-form2" ).dialog("open");
 			});
 		}
 		else
 		{
-			$("#gemType").val("None");
+			$("#gemType2").val("None");
 		}
-
-		gemVersion = $("#gemType").val();
-
-		console.log(gemtype + " nad ");
-		console.log(gemVersion + " nonnasda");
-		/* calculateGemEffects(gemtype, gemVersion); */ 	
 	});
 
 	$('#gems3').on('change', function(){
@@ -140,36 +185,57 @@ $(document).ready(function(){
 			{
 				$.each(data, function(key, val) 
 				{
-					createPopUpWindow(gemtype, val);
+					createPopUpWindow(gemtype, val, "3");
 				});
 			
 			
 				/* have this return a value before the calculate gemEffects function gets called. Maybe this needs a callback??? */
-				$( "#dialog-form" ).dialog("open");
+				$( "#dialog-form3" ).dialog("open");
 			});
 		}
 		else
 		{
-			$("#gemType").val("None");
+			$("#gemType3").val("None");
 		}
-
-		gemVersion = $("#gemType").val();
-
-		console.log(gemtype + " nad ");
-		console.log(gemVersion + " nonnasda");
-		/* calculateGemEffects(gemtype, gemVersion); */ 	
 	});
 	console.log("Ready");
 });
 
 
 /* DAMAGE GEM FUNCTIONS */
-function traverseDamageFields(gemTitle)
+function traverseDamageFields(gem)
 {
-
-	return;
+	$('.damage').each(function(){
+	
+		if ($(this).html() == "Damage")
+		{
+			$(this).css('color', 'black');
+			return;
+		}
+		
+		if (containsNumber($(this).html()))
+		{
+			$(this).html(createNewDamageString($(this).html(), value));
+			if (value > 0)
+			{
+				$(this).css('color', 'green');
+			}
+			else
+			{
+				$(this).css('color', 'red');
+			}
+		}
+	})
 }
 
+function retraverseDamageFieldsGems()
+{
+	traverseDamageFields($("#gemsSlot1").val());
+	traverseDamageFields($("#gemsSlot2").val());
+	traverseDamageFields($("#gemsSlot3").val());
+		
+	return;
+}
 /* DEFENSE GEM FUNCTIONS */
 
 /* SPEED GEM FUNCTIONS */
@@ -181,7 +247,7 @@ function traverseDamageFields(gemTitle)
 /* USER CONFIG STUFF */
 
 	
-function calculateGemEffects(gemEffect)
+function calculateGemEffects()
 {
 	resetValuesWhileKeepingGemConfig();
 	
@@ -194,431 +260,10 @@ function calculateGemEffects(gemEffect)
 	return;	
 }
 
-function resetConfiguration(gemSlot)
-{
-	console.log("resetting everything");
-	resetDamageValues();
-	resetSpeedValues();
-	resetDefenseValues();
-	resetCrossGaugeValues();
-	
-	$('#gems1').val("none");
-	$('#gems2').val("none");
-	$('#gems3').val("none");
-	
-	return;
-}
-
-function calculateDefenseGems(gemTitle)
-{
-	console.log(gemTitle);
-	var health = parseFloat($('.health').html());
-	if (gemTitle == "ironWallLvl1")
-	{
-		health = (health * (0.10)) + health;
-		$('.health').css("color", "green");
-	}
-	else if (gemTitle == "ironWallLvl2")
-	{
-		health = (health * (0.20)) + health;
-		$('.health').css("color", "green");
-
-		traverseDamageFieldsEffects(-10);
-	}
-	else if (gemTitle == "ironWallLvl3")
-	{
-		health = (health * (0.30)) + health;
-		$('.health').css("color", "green");
-	}
-
-	else if (gemTitle == "fortLvl1")
-	{
-		console.log("fort");
-		health = health + 100;
-		$('.health').css("color", "green");
-	}
-	else if (gemTitle == "fortLvl2")
-	{
-		health = health + 160;
-		$('.health').css("color", "green");
-	}
-	console.log(health);
-	$('.health').html(health);
-	return;
-}
-
-function calculateSpeedGems(gemTitle)
-{
-	console.log(gemTitle);
-	
-	if (gemTitle == "divineSpeedLvl1")
-	{
-		calculateSpeedEffects(10);
-	}
-	else if (gemTitle == "divineSpeedLvl2")
-	{
-		calculateSpeedEffects(15);
-		/* function here to reduce defense numbers by 8% */
-		calculateDefenseEffects(-8);
-	}
-	else if (gemTitle == "divineSpeedLvl3")
-	{
-		calculateSpeedEffects(20);
-	}
-	return; 
-}
-
-function calculateCrossGaugeGems(gemTitle)
-{
-	var gemValue = 0;
-	if (gemTitle == "onslaughtLvl1"){
-		gemValue = 20;
-		$('.meter-gain').each(function(){
-			
-			$(this).html(createNewDamageString($(this).html(), gemValue));
-			if (gemValue > 0)
-			{
-				$(this).css('color', 'green');
-			}
-			else
-			{
-				$(this).css('color', 'red');
-			}
-
-		})
-	}
-	else if (gemTitle == "onslaughtLvl2"){
-		gemValue = 40
-		$('.meter-gain').each(function()
-		{
-			$(this).html(createNewDamageString($(this).html(), gemValue));
-			if (gemValue > 0)
-			{
-				$(this).css('color', 'green');
-			}
-			else
-			{
-				$(this).css('color', 'red');
-			}
-			/* reduce speed here */
-		})
-	}
-	
-	else if (gemTitle == "proficiencyLvl1"){
-		$('.meter-gain').each(function()
-		{
-			if ($(this).html() == "Meter-Gain")
-			{
-				return;
-			}
-			
-			/* reduce speed by 10% */
-			calculateSpeedEffects(-10);
-			/**** NOTE, FIGURE OUT A WAY TO MEASURE AMOUNT OF EX BAR USED BY CERTAIN MOVES *****/
-		})	
-	}
-
-	else if (gemTitle == "proficiencyLvl2"){
-		$('.meter-gain').each(function()
-		{
-			if ($(this).html() == "Meter-Gain")
-			{
-				return;
-			}
-			
-			/* reduce speed by 10% */
-			/**** NOTE, FIGURE OUT A WAY TO MEASURE AMOUNT OF EX BAR USED BY CERTAIN MOVES *****/
-        	})
-	}
-	return;
-}
-
-/* this function just writes HTML code */
-function calculateVitalityGems(gemTitle)
-{
-	console.log("Vitality");
-
-	if (gemTitle == "lifeForceLvl1")
-	{
-		$("#additionalEffects").append("<li> Gradually restore 80 points of HP for 5 seconds </li>");
-	}
-	
-	else if (gemTitle == "harmonizeLvl1")
-	{
-		$("#additionalEffects").append("<li> Instally restore 80 points of HP </li>");
-	}	
-}
-
-/* this function just writes HTML code */
-function calculateAssistGems(gemTitle)
-{
-	console.log("Assist!");
-	/* might cause a bug where strings may be written over again */
-	if (gemTitle == "easyInput")
-	{
-		traverseDamageFieldsEffects(-10);
-		$("#additionalEffects").append("<li> Special Moves become easier to do </li>");
-	}
-	
-	else if (gemTitle == "superEasyInput")
-        {
-		traverseDamageFieldsEffects(-10)
-                $("#additionalEffects").append("<li>Special Moves become very easy to do </li>");
-        }
-	
-	else if (gemTitle == "cancelAssist")
-        {
-		traverseDamageFieldsEffects(-10)
-		$("#additionalEffects").append("<li>Special Move cancels become easy to do</li>");
-        }
-
-	else if (gemTitle == "autoThrowEscape")
-        {
-		$("#additionalEffects").append("<li>Escape from throws automatically</li> <li> Cross Gauge decreases by 1/2 block when activated </li>");
-        }
-	
-	else if (gemTitle == "autoBlock")
-        {
-		$("#additionalEffects").append("<li>Block Attacks automatically</li> <li> Cross Gauge decreases by 1 block when activated </li>");
-        }
-}
-
-function retraverseDamageFieldsGems()
-{
-	traverseDamageFields($("#gems1").val());
-	traverseDamageFields($("#gems2").val());
-	traverseDamageFields($("#gems3").val());
-		
-	return;
-}
-
-function recalculateDefenseGems()
-{
-	calculateDefenseGems($("#gems1").val());
-	calculateDefenseGems($("#gems2").val());
-	calculateDefenseGems($("#gems3").val());
-	return;
-}
-
-function recalculateSpeedGems()
-{
-	calculateSpeedGems($("#gems1").val());
-	calculateSpeedGems($("#gems2").val());
-	calculateSpeedGems($("#gems3").val());
-	return;
-
-}
-
-function recalculateAssistGems()
-{
-	calculateAssistGems($("#gems1").val());
-	calculateAssistGems($("#gems2").val());
-	calculateAssistGems($("#gems3").val());
-
-}
-
-function recalculateVitalityGems()
-{
-        calculateVitalityGems($("#gems1").val());
-        calculateVitalityGems($("#gems2").val());
-        calculateVitalityGems($("#gems3").val());
-
-}
-
 /* these effect functions exist because gems have secondary effects on
 certain character features */
 
-function calculateSpeedEffects(value)
-{	
-	console.log("speed reduce: " + value);
-	/* walk speed values are in percentage. */
-	var fwalk = parseInt($(".fwalkspeed").html());
-	fwalk+=value;
-	fwalk+="%";
-	$(".fwalkspeed").html(fwalk);
-	
-	var bwalk = parseInt($(".bwalkspeed").html());
-        bwalk+=value;
-        bwalk+="%";
-        $(".bwalkspeed").html(bwalk);
-	
-	if (value < 0)
-	{
-		$(".fwalkspeed").css("color", "red");
-		$(".bwalkspeed").css("color", "red");
-		$(".btotalframe").css("color", "red");
-		$(".bairframe").css("color", "red");
-		$(".bgroundframe").css("color", "red");
-		$(".binvulframe").css("color", "red");
-		$(".fdashframe").css("color", "red");
-		$(".vjumpframe").css("color", "red");
-		$(".djumpframe").css("color", "red");
-	}
-	else
-	{
-		$(".fwalkspeed").css("color", "green");
-		$(".bwalkspeed").css("color", "green");
-		$(".btotalframe").css("color", "green");
-		$(".bairframe").css("color", "green");
-		$(".bgroundframe").css("color", "green");
-		$(".binvulframe").css("color", "green");
-		$(".fdashframe").css("color", "green");
-		$(".vjumpframe").css("color", "green");
-		$(".djumpframe").css("color", "green");
-	}
-	/* convert value to decimal	
-	var binvulframe = parseFloat($(".binvulframe").html());
-	value*=-1;
-	value/=100;
-	var p = binvulframe*=value;
-	binvulframe+=p;
-	console.log(binvulframe);
-        $(".binvulframe").html(binvulframe);
-	*/
 
-	/* change backwards walk speed */
-	var btotalframe = parseInt($(".btotalframe").html());
-	var bairframe = parseInt($(".bairframe").html());
-	var bgroundframe = parseInt($(".bgroundframe").html());
-	var binvulframe = parseInt($(".binvulframe").html());
-	
-	if (value < 0)
-	{	
-		value*=-1;
-		value/=100;
-		var perVal = 0
-		perVal = bairframe*value;
-		bairframe+=perVal;
-		
-		perVal = bgroundframe*value;
-		bgroundframe+=perVal;
-		
-		perVal = binvulframe*value;
-                binvulframe+=perVal;
-
-		var regResult = $(".vjumpframe").html().match(regExpAllNumbers);
-		var newString = "";
-		console.log(regResult);
-		
-		/* shouldnt ever be 0, but let's be careful just in case */
-		if (regResult.length > 1)
-		{
-			console.log("Loop: " + regResult[0]);
-			console.log("Loop: " + regResult[1]);
-				
-			var result1 = parseInt(regResult[0]);
-			perVal = parseInt(result1 * value);
-			result1+=perVal;
-	
-			var result2 = parseInt(regResult[1]);
-			perVal = parseInt(result2 * value);
-			result2+=perVal;
-			newString = result1 + "(" + result2 + ")";
-			$(".vjumpframe").html(newString);
-		}
-	
-		var regResult = $(".djumpframe").html().match(regExpAllNumbers);
-
-                if (regResult != null)
-                {
-                        var newString = "";
-                        console.log(regResult);
-
-                        if (regResult.length > 1)
-                        {
-                                console.log("Loop: " + regResult[0]);
-                                console.log("Loop: " + regResult[1]);
-
-                                var result1 = parseInt(regResult[0]);
-                                perVal = parseInt(result1 * value);
-                                result1+=perVal;
-
-                                var result2 = parseInt(regResult[1]);
-                                perVal = parseInt(result2 * value);
-                                result2+=perVal;
-
-                                newString = result1 + "(" + result2 + ")";
-                                $(".djumpframe").html(newString);
-                        }
-                }
-	}
-	else
-	{
-		value/=100;
-		var perVal = 0
-
-		perVal = bairframe*value;
-                bairframe-=perVal;
-
-                perVal = bgroundframe*value;
-                bgroundframe-=perVal;
-		
-		perVal = binvulframe*value;
-                binvulframe-=perVal;
-	
-		var regResult = $(".vjumpframe").html().match(regExpAllNumbers);
-		var newString = "";
-		console.log(regResult);
-		
-		/* shouldnt ever be 0, but let's be careful just in case */
-		if (regResult.length > 1)
-		{
-			console.log("Loop: " + regResult[0]);
-			console.log("Loop: " + regResult[1]);
-				
-			var result1 = parseInt(regResult[0]);
-			perVal = parseInt(result1 * value);
-			result1+=perVal;
-	
-			var result2 = parseInt(regResult[1]);
-			perVal = parseInt(result2 * value);
-			result2+=perVal;
-			newString = result1 + "(" + result2 + ")";
-			$(".vjumpframe").html(newString);
-		}
-	
-		var regResult = $(".djumpframe").html().match(regExpAllNumbers);
-
-                if (regResult != null)
-                {
-                        var newString = "";
-                        console.log(regResult);
-
-                        if (regResult.length > 1)
-                        {
-                                console.log("Loop: " + regResult[0]);
-                                console.log("Loop: " + regResult[1]);
-
-                                var result1 = parseInt(regResult[0]);
-                                perVal = parseInt(result1 * value);
-                                result1+=perVal;
-
-                                var result2 = parseInt(regResult[1]);
-                                perVal = parseInt(result2 * value);
-                                result2+=perVal;
-
-                                newString = result1 + "(" + result2 + ")";
-                                $(".djumpframe").html(newString);
-                        }
-                }
-
-	}
-	console.log(bairframe);
-	console.log(bgroundframe);
-	console.log(binvulframe);
-	bairframe = parseInt(bairframe);
-	bgroundframe = parseInt(bgroundframe);
-	binvulframe = parseInt(binvulframe);
-	btotalframe = bairframe+bgroundframe+binvulframe;
-	console.log(btotalframe);
-
-	$(".btotalframe").html(btotalframe);
-	$(".bairframe").html(bairframe);
-	$(".bgroundframe").html(bgroundframe);
-	$(".binvulframe").html(binvulframe);
-	
-	return;
-}
 
 function traverseDamageFieldsEffects(value)
 {
@@ -643,7 +288,6 @@ function traverseDamageFieldsEffects(value)
 			}
 		}
 	})
-	
 }
 
 function containsNumber(string)
@@ -651,39 +295,30 @@ function containsNumber(string)
         return /\d/.test(string);
 }
 
-
-function calculateDefenseEffects(value)
+function resetConfiguration(gemSlot)
 {
-        console.log("defense reduce: " + value);
+	console.log("resetting everything");
+	resetDamageValues();
+	resetSpeedValues();
+	resetDefenseValues();
+	resetCrossGaugeValues();
+	
+	$('#gems1').val("none");
+	$('#gems2').val("none");
+	$('#gems3').val("none");
+	
+	return;
+}
 
-        if (value < 0)
-        {
-                value/=100;
 
-                $('.health').css('color', 'red');
-        }
-        else
-        {
-                value/=100;
 
-                $('.health').css('color', 'green');
-        }
-        console.log("new reduce: " + value);
-        $('.health').each(function(){
-                console.log($(this).html());
-
-                if ($(this).html() == "Health")
-                {
-                        $(this).css('color', 'black');
-                        return;
-                } 
-                else
-                {
-                        var newValue = parseFloat($(this).html());
-                        newValue = (newValue * value) + newValue;
-                        $(this).html(newValue);
-                }
-         })
+function retraverseDamageFieldsGems()
+{
+	traverseDamageFields($("#gemsSlot1").val());
+	traverseDamageFields($("#gemsSlot2").val());
+	traverseDamageFields($("#gemsSlot3").val());
+		
+	return;
 }
 
 function resetValuesWhileKeepingGemConfig()
@@ -711,12 +346,12 @@ function resetSpeedValues()
 	$(".fwalkspeed").html(genAttr[1]);
 	$(".bwalkspeed").html(genAttr[2]);
 	$(".btotalframe").html(genAttr[6]);
-        $(".bairframe").html(genAttr[4]);
-        $(".bgroundframe").html(genAttr[5]);
-        $(".binvulframe").html(genAttr[3]);
+	$(".bairframe").html(genAttr[4]);
+	$(".bgroundframe").html(genAttr[5]);
+	$(".binvulframe").html(genAttr[3]);
 	$(".fdashframe").html(genAttr[7]);
 	$(".fwalkspeed").css("color", "black");
-        $(".bwalkspeed").css("color", "black");
+	$(".bwalkspeed").css("color", "black");
 	$(".btotalframe").css("color", "black");
 	$(".bairframe").css("color", "black");
 	$(".bgroundframe").css("color", "black");
@@ -738,8 +373,8 @@ function resetDefenseValues()
 {
 	console.log("Reset");
 
-        $('.health').html(genAttr[0]);
-        $('.health').css('color', 'black');
+	$('.health').html(genAttr[0]);
+	$('.health').css('color', 'black');
 	return;
 }
 
@@ -809,4 +444,3 @@ function uploadGemConfig()
 {
 	alert("You wish to upload your current gem loadout");
 }
-	

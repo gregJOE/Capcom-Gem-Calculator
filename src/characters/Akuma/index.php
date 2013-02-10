@@ -25,11 +25,14 @@
 					<input type="button" onclick="uploadGemConfig()" value="Upload"</input>
 					<input type="button" onclick="resetConfiguration();" value="Clear Set"></input>
 				</div>
-				</br>	
+					
 				<div id='playerGemSet'>
 						<h3> Gem Set </h3>
-						</br>
-						<select id="gems1" name="Gem 1">
+						<input type="hidden" name="gemsSlot1" id="gemsSlot1" value=""></input>
+						<input type="hidden" name="gemsSlot2" id="gemsSlot2" value=""></input>
+						<input type="hidden" name="gemsSlot3" id="gemsSlot3" value=""></input>
+
+						<select id="gems1" name="Gem1">
 							<option class="gem" value="none">None</option>
 							<option class="gem" value="immenseLevel1">Immense Power Level. 1</option>
 							<option class="gem" value="immenseLevel2">Immense Power Level. 2</option>
@@ -55,62 +58,79 @@
 							<option class="gem" value="autoBlock">Auto Block</option>
 						</select>
 
-						 <select id="gems2" name="Gem 2">
-                                                        <option class="gem" value="none">None</option>
-                                                        <option class="gem" value="immenseLevel1">Immense Power Level. 1</option>
-                                                        <option class="gem" value="immenseLevel2">Immense Power Level. 2</option>
-                                                        <option class="gem" value="immenseLevel3">Immense Power Level. 3</option>
+						 <select id="gems2" name="Gem2">
+							<option class="gem" value="none">None</option>
+							<option class="gem" value="immenseLevel1">Immense Power Level. 1</option>
+							<option class="gem" value="immenseLevel2">Immense Power Level. 2</option>
+							<option class="gem" value="immenseLevel3">Immense Power Level. 3</option>
 							<option class="gem" value="ironWallLevel1">Iron Wall Level. 1</option>
-                                                        <option class="gem" value="ironWallLevel2">Iron Wall Level. 2</option>
-                                                        <option class="gem" value="ironWallLevel3">Iron Wall Level. 3</option>
-                                                        <option class="gem" value="fortLevel1">Fortitude Level. 1 </option>
-                                                        <option class="gem" value="fortLevel2">Fortitude Level. 2 </option>
+							<option class="gem" value="ironWallLevel2">Iron Wall Level. 2</option>
+							<option class="gem" value="ironWallLevel3">Iron Wall Level. 3</option>
+							<option class="gem" value="fortLevel1">Fortitude Level. 1 </option>
+							<option class="gem" value="fortLevel2">Fortitude Level. 2 </option>
 							<option class="gem" value="divineSpeedLevel1">Divine Speed Level. 1</option>
 							<option class="gem" value="divineSpeedLevel2">Divine Speed Level. 2</option>
 							<option class="gem" value="divineSpeedLevel3">Divine Speed Level. 3</option>
-                                                        <option class="gem" value="onslaughtLevel1">Onslaught Level. 1</option>
-                                                        <option class="gem" value="onslaughtLevel2">Onslaught Level. 2</option>
-                                                        <option class="gem" value="proficiencyLevel1">Proficiency Level. 1</option>
-                                                        <option class="gem" value="proficiencyLevel2">Proficiency Level. 2</option> 
+							<option class="gem" value="onslaughtLevel1">Onslaught Level. 1</option>
+							<option class="gem" value="onslaughtLevel2">Onslaught Level. 2</option>
+							<option class="gem" value="proficiencyLevel1">Proficiency Level. 1</option>
+							<option class="gem" value="proficiencyLevel2">Proficiency Level. 2</option> 
 							<option class="gem" value="lifeForceLevel1">Life Force Level. 1</option>
-                                                        <option class="gem" value="harmonizeLevel1">Harmonize Level. 1</option>
-                                                        <option class="gem" value="easyInput">Easy Input</option>
-                                                        <option class="gem" value="superEasyInput">Super Easy Input</option>
-                                                        <option class="gem" value="canceAssist">Cancel Assist</option>
-                                                        <option class="gem" value="autoThrowEscape">Auto Throw Escape</option>
-                                                        <option class="gem" value="autoBlock">Auto Block</option>
-                                                </select>
+							<option class="gem" value="harmonizeLevel1">Harmonize Level. 1</option>
+							<option class="gem" value="easyInput">Easy Input</option>
+							<option class="gem" value="superEasyInput">Super Easy Input</option>
+							<option class="gem" value="canceAssist">Cancel Assist</option>
+							<option class="gem" value="autoThrowEscape">Auto Throw Escape</option>
+							<option class="gem" value="autoBlock">Auto Block</option>
+						</select>
 
-						 <select id="gems3" name="Gem 3">
-                                                        <option class="gem" value="none">None</option>
-                                                        <option class="gem" value="immenseLevel1">Immense Power Level. 1</option>
-                                                        <option class="gem" value="immenseLevel2">Immense Power Level. 2</option>
-                                                        <option class="gem" value="immenseLevel3">Immense Power Level. 3</option>
+						<select id="gems3" name="Gem3">
+							<option class="gem" value="none">None</option>
+							<option class="gem" value="immenseLevel1">Immense Power Level. 1</option>
+							<option class="gem" value="immenseLevel2">Immense Power Level. 2</option>
+							<option class="gem" value="immenseLevel3">Immense Power Level. 3</option>
 							<option class="gem" value="ironWallLevel1">Iron Wall Level. 1</option>
-                                                        <option class="gem" value="ironWallLevel2">Iron Wall Level. 2</option>
-                                                        <option class="gem" value="ironWallLevel3">Iron Wall Level. 3</option>
-                                                        <option class="gem" value="fortLevel1">Fortitude Level. 1 </option>
-                                                        <option class="gem" value="fortLevel2">Fortitude Level. 2 </option>
+							<option class="gem" value="ironWallLevel2">Iron Wall Level. 2</option>
+							<option class="gem" value="ironWallLevel3">Iron Wall Level. 3</option>
+							<option class="gem" value="fortLevel1">Fortitude Level. 1 </option>
+							<option class="gem" value="fortLevel2">Fortitude Level. 2 </option>
 							<option class="gem" value="divineSpeedLevel1">Divine Speed Level. 1</option>
-                                                        <option class="gem" value="divineSpeedLevel2">Divine Speed Level. 2</option>
-                                                        <option class="gem" value="divineSpeedLevel3">Divine Speed Level. 3</option>
-                                                        <option class="gem" value="onslaughtLevel1">Onslaught Level. 1</option>
+							<option class="gem" value="divineSpeedLevel2">Divine Speed Level. 2</option>
+							<option class="gem" value="divineSpeedLevel3">Divine Speed Level. 3</option>
+							<option class="gem" value="onslaughtLevel1">Onslaught Level. 1</option>
 							<option class="gem" value="onslaughtLevel2">Onslaught Level. 2</option>
 							<option class="gem" value="proficiencyLevel1">Proficiency Level. 1</option>
 							<option class="gem" value="proficiencyLevel2">Proficiency Level. 2</option>
-                                                        <option class="gem" value="lifeForceLevel1">Life Force Level. 1</option>
-                                                        <option class="gem" value="harmonizeLevel1">Harmonize Level. 1</option>
-                                                        <option class="gem" value="easyInput">Easy Input</option>
-                                                        <option class="gem" value="superEasyInput">Super Easy Input</option>
-                                                        <option class="gem" value="canceAssist">Cancel Assist</option>
-                                                        <option class="gem" value="autoThrowEscape">Auto Throw Escape</option>
-                                                        <option class="gem" value="autoBlock">Auto Block</option>
-                                                </select>
+							<option class="gem" value="lifeForceLevel1">Life Force Level. 1</option>
+							<option class="gem" value="harmonizeLevel1">Harmonize Level. 1</option>
+							<option class="gem" value="easyInput">Easy Input</option>
+							<option class="gem" value="superEasyInput">Super Easy Input</option>
+							<option class="gem" value="canceAssist">Cancel Assist</option>
+							<option class="gem" value="autoThrowEscape">Auto Throw Escape</option>
+							<option class="gem" value="autoBlock">Auto Block</option>
+						</select>
 
 						<h4> Additional Effects </h4>
 						<ul id="additionalEffects"> </ul>
 				</div>
-				</br>
+
+				<div id="pop-up-windows">
+					<div id="dialog-form1" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-dialog-buttons">
+						<p class="validateTips">Select Gem Type</p>
+						<select id="gemType1" name="GemType1" value="None">
+						</select>
+					</div>
+					<div id="dialog-form2" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-dialog-buttons">
+						<p class="validateTips">Select Gem Type</p>
+						<select id="gemType2" name="GemType2" value="None">
+						</select>
+					</div>	
+					<div id="dialog-form3" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-dialog-buttons">
+						<p class="validateTips">Select Gem Type</p>
+						<select id="gemType3" name="GemType3" value="None">
+						</select>
+					</div>
+				</div>
 				<div id='characterFrame'>
 					<div id='characterDisplay'> </div>
 					<div id='characterData'>
@@ -118,9 +138,9 @@
 						<h3> General Attributes </h3>
 						<table title="General Attributes" id='characterAttr'>
 							<?php
-                                                		include ('../../php/fileOps.php');
+								include ('../../php/fileOps.php');
 
-                                                		$fp = openCharacterData("Akuma", "g");
+								$fp = openCharacterData("Akuma", "g");
 
 								$j = 0;
 								
@@ -263,9 +283,9 @@
 								fclose($fp);
 							?>			
 						</table>
-						</br>
+						
 						<h3> Frame Data </h3>
-						</br>
+						
 						<table title="Frame Data" id='characterFrames'>
 					<?php 
 							
@@ -328,12 +348,6 @@
 					?>
 					</div>
 			</div> 		
-		</div>
-
-		<div id="dialog-form" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-dialog-buttons">
-			<p class="validateTips">Select Gem Type</p>
-			<select id="gemType" name="Gem Type" value="None">
-			</select>
 		</div>
 	</body>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
