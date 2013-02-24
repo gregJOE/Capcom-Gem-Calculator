@@ -5,10 +5,16 @@
 var damageValues = [];
 var genAttr = [];
 var meterGainValues = [];
+var gemInfo = [];
+
 var regExpAllNumbers = /[0-9]+/g;
 var regExpAllMultipliers = /\d+(?!x)\d+/g;
 //var regExpDamage = /[\d]+(,|x|f)|[\d]+/g;
 var regExpDamage = /[\d]+(.|,|x|f)|[\d]+/g;
+
+var UserGem1 = null;
+var UserGem2 = null;
+var UserGem3 = null;
 
 /* READY FUNCTION */
 $(document).ready(function(){
@@ -29,8 +35,8 @@ $(document).ready(function(){
 				function() 
 				{
 					$( this ).dialog( "close" );
-					console.log($("#gems1").val() + " " + $("#gemType1").val());
-					$("#gemsSlot1").val($("#gems1").val() + "-" + $("#gemType1").val());
+					UserGem1.gemInfo = UserGem1.selectedGemVersion($("#gemType1").val());
+					calculateGemEffects();
 				},
 			Cancel: 
 				function() 
@@ -54,8 +60,8 @@ $(document).ready(function(){
 				function() 
 				{
 					$( this ).dialog( "close" );
-					console.log($("#gems2").val() + " " + $("#gemType2").val());
-					$("#gemsSlot2").val($("#gems2").val() + "-" + $("#gemType2").val());
+					UserGem2.gemInfo = UserGem2.selectedGemVersion($("#gemType2").val());
+					calculateGemEffects();
 				},
 			Cancel: 
 				function() 
@@ -66,10 +72,6 @@ $(document).ready(function(){
 		close: function() {
 
 		}
-	});
-	$('#characterData .damage').each(function() 
-	{
-		damageValues.push($(this).html());
 	});
 
 	$( "#dialog-form3" ).dialog({
@@ -83,8 +85,8 @@ $(document).ready(function(){
 				function() 
 				{
 					$( this ).dialog( "close" );
-					console.log($("#gems3").val() + " " + $("#gemType3").val());
-					$("#gemsSlot3").val($("#gems3").val() + "-" + $("#gemType3").val());
+					UserGem3.gemInfo = UserGem1.selectedGemVersion($("#gemType3").val());
+					calculateGemEffects();
 				},
 			Cancel: 
 				function() 
@@ -130,9 +132,9 @@ $(document).ready(function(){
 		{
 			$.getJSON('../../json/gems.json', function(data) 
 			{
-				$.each(data, function(key, val) 
-				{
-					createPopUpWindow(gem, val, "1");
+				/* data is the entire gems json object with about 5 arrays */
+				$.each(data, function(key, val) {
+					UserGem1 = createPopUpWindow(gem, val, "1", UserGem1);
 				});
 			
 				/* have this return a value before the calculate gemEffects function gets called. Maybe this needs a callback??? */
@@ -146,19 +148,19 @@ $(document).ready(function(){
 	});
 
 	$('#gems2').on('change', function(){
-		var gemtype, gemVersion;
+		var gem, gemType;
 
-		gemtype = $("#gems2").val();
-		gemVersion = '';
+		gem = $("#gems1").val();
+		gemType = '';
 
 		/* put this into a function 2/3/2013 */
-		if (gemtype !== "none")
+		if (gem !== "none")
 		{
 			$.getJSON('../../json/gems.json', function(data) 
 			{
 				$.each(data, function(key, val) 
 				{
-					createPopUpWindow(gemtype, val, "2");
+					UserGem2 = createPopUpWindow(gem, val, "2", UserGem2);
 				});
 			
 			
@@ -173,19 +175,19 @@ $(document).ready(function(){
 	});
 
 	$('#gems3').on('change', function(){
-		var gemtype, gemVersion;
+		var gem, gemType;
 
-		gemtype = $("#gems1").val();
-		gemVersion = '';
+		gem = $("#gems1").val();
+		gemType = '';
 
 		/* put this into a function 2/3/2013 */
-		if (gemtype !== "none")
+		if (gem !== "none")
 		{
 			$.getJSON('../../json/gems.json', function(data) 
 			{
 				$.each(data, function(key, val) 
 				{
-					createPopUpWindow(gemtype, val, "3");
+					UserGem3 = createPopUpWindow(gem, val, "3", UserGem3);
 				});
 			
 			
@@ -197,14 +199,15 @@ $(document).ready(function(){
 		{
 			$("#gemType3").val("None");
 		}
+		calculateGemEffects();
 	});
-	console.log("Ready");
 });
 
 
 /* DAMAGE GEM FUNCTIONS */
-function traverseDamageFields(gem)
+function traverseDamageFields(gemEffect)
 {
+	console.log(gemEffect);
 	$('.damage').each(function(){
 	
 		if ($(this).html() == "Damage")
@@ -212,11 +215,11 @@ function traverseDamageFields(gem)
 			$(this).css('color', 'black');
 			return;
 		}
-		
+		console.log($(this).html());
 		if (containsNumber($(this).html()))
 		{
-			$(this).html(createNewDamageString($(this).html(), value));
-			if (value > 0)
+			$(this).html(createNewDamageString($(this).html(), gemEffect));
+			if (gemEffect > 0)
 			{
 				$(this).css('color', 'green');
 			}
@@ -230,9 +233,9 @@ function traverseDamageFields(gem)
 
 function retraverseDamageFieldsGems()
 {
-	traverseDamageFields($("#gemsSlot1").val());
-	traverseDamageFields($("#gemsSlot2").val());
-	traverseDamageFields($("#gemsSlot3").val());
+	traverseDamageFields(UserGem1.gemInfo[1].Attack);
+	//traverseDamageFields(UserGem2.gemInfo[1].Attack);
+	//traverseDamageFields(UserGem3.gemInfo[1].Attack);
 		
 	return;
 }
@@ -249,21 +252,20 @@ function retraverseDamageFieldsGems()
 	
 function calculateGemEffects()
 {
+	console.log("calculate");
 	resetValuesWhileKeepingGemConfig();
 	
 	/* covering all gem types, since we aren't checking which gem was selected */	
 	retraverseDamageFieldsGems();
-	recalculateDefenseGems();
+	/* recalculateDefenseGems();
 	recalculateSpeedGems();
 	recalculateAssistGems();
-	recalculateVitalityGems();		
+	recalculateVitalityGems(); */
 	return;	
 }
 
 /* these effect functions exist because gems have secondary effects on
 certain character features */
-
-
 
 function traverseDamageFieldsEffects(value)
 {
@@ -310,24 +312,13 @@ function resetConfiguration(gemSlot)
 	return;
 }
 
-
-
-function retraverseDamageFieldsGems()
-{
-	traverseDamageFields($("#gemsSlot1").val());
-	traverseDamageFields($("#gemsSlot2").val());
-	traverseDamageFields($("#gemsSlot3").val());
-		
-	return;
-}
-
 function resetValuesWhileKeepingGemConfig()
 {
 	resetDamageValues();
-	resetSpeedValues();
-	resetDefenseValues();
-	resetAssistGemEffects();
-	resetVitalityGemEffects();
+	//resetSpeedValues();
+	//resetDefenseValues();
+	//resetAssistGemEffects();
+	//resetVitalityGemEffects();
 }
 
 function resetAssistGemEffects()
