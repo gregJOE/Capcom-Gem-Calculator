@@ -46,9 +46,16 @@ function checkIfMultiplier(string)
 
 function calculateSingleStringDamage(data, gemValue)
 {
-	var percentage = gemValue / 100.0
 	data = parseFloat(data);
-	return parseInt((data * percentage) + data)
+
+	if (data % 1 != 0)
+	{
+		return parseInt((data * gemValue) + data);
+	}
+	else
+	{
+		return parseInt(gemValue + data);
+	}
 }
 
 function calculateAndBuildMultiStringDamage(data, gemValue)

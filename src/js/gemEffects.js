@@ -85,7 +85,7 @@ $(document).ready(function(){
 				function() 
 				{
 					$( this ).dialog( "close" );
-					UserGem3.gemInfo = UserGem1.selectedGemVersion($("#gemType3").val());
+					UserGem3.gemInfo = UserGem3.selectedGemVersion($("#gemType3").val());
 					calculateGemEffects();
 				},
 			Cancel: 
@@ -150,7 +150,7 @@ $(document).ready(function(){
 	$('#gems2').on('change', function(){
 		var gem, gemType;
 
-		gem = $("#gems1").val();
+		gem = $("#gems2").val();
 		gemType = '';
 
 		/* put this into a function 2/3/2013 */
@@ -177,7 +177,7 @@ $(document).ready(function(){
 	$('#gems3').on('change', function(){
 		var gem, gemType;
 
-		gem = $("#gems1").val();
+		gem = $("#gems3").val();
 		gemType = '';
 
 		/* put this into a function 2/3/2013 */
@@ -248,19 +248,94 @@ function retraverseDamageFieldsGems()
 /* INPUT GEM FUNCTIONS */
 
 /* USER CONFIG STUFF */
-
 	
 function calculateGemEffects()
 {
 	console.log("calculate");
 	resetValuesWhileKeepingGemConfig();
-	
-	/* covering all gem types, since we aren't checking which gem was selected */	
-	retraverseDamageFieldsGems();
-	/* recalculateDefenseGems();
-	recalculateSpeedGems();
-	recalculateAssistGems();
-	recalculateVitalityGems(); */
+	if (UserGem1 !== null)
+	{
+		switch (UserGem1.category)
+		{
+			case "Attack":
+				traverseDamageFields(UserGem1.gemInfo[1].Attack);
+				break;
+			case "Defense":
+				if (UserGem1.gemInfo[1].Defense !== undefined)
+				{
+					console.log(UserGem1.gemInfo[1].Defense);
+					traverseDefenseFieldsEffects(UserGem1.gemInfo[1].Defense);
+				}
+				else
+				{
+					traverseDefenseFieldsEffects(UserGem1.gemInfo[1].DamageReduction); 
+				}
+				break;
+			case "CrossGauge":
+				/*traverseDamageFields(UserGem1.gemInfo[1].CrossGaugeAcquisition);
+				traverseDamageFields(UserGem1.gemInfo[1].CrossGaugeUsageReduction); */
+				break;
+			case "Vitality":
+				/*traverseDamageFields(UserGem1.gemInfo[1].VitalityGradualRestoration);
+				traverseDamageFields(UserGem1.gemInfo[1].VitalityInstantRestoration);*/
+				break;
+			case "Assist":
+				/*traverseDamageFields(UserGem1.gemInfo[1].Attack);*/
+				break;								
+		}
+	}
+
+	if (UserGem2 !== null)
+	{
+		switch (UserGem2.category)
+		{
+			case "Attack":
+				traverseDamageFields(UserGem2.gemInfo[1].Attack);
+				break;
+			case "Defense":
+				/* traverseHealthFields(UserGem1.gemInfo[1].Defense);
+				traverseHealthFields(UserGem1.gemInfo[1].DamageReduction); 
+				*/
+				break;
+			case "CrossGauge":
+				/*traverseDamageFields(UserGem1.gemInfo[1].CrossGaugeAcquisition);
+				traverseDamageFields(UserGem1.gemInfo[1].CrossGaugeUsageReduction); */
+				break;
+			case "Vitality":
+				/*traverseDamageFields(UserGem1.gemInfo[1].VitalityGradualRestoration);
+				traverseDamageFields(UserGem1.gemInfo[1].VitalityInstantRestoration);*/
+				break;
+			case "Assist":
+				/*traverseDamageFields(UserGem1.gemInfo[1].Attack);*/
+				break;								
+		}
+	}
+
+	if (UserGem3 !== null)
+	{
+		switch (UserGem3.category)
+		{
+			case "Attack":
+				traverseDamageFields(UserGem3.gemInfo[1].Attack);
+				break;
+			case "Defense":
+				/* traverseHealthFields(UserGem1.gemInfo[1].Defense);
+				traverseHealthFields(UserGem1.gemInfo[1].DamageReduction); 
+				*/
+				break;
+			case "CrossGauge":
+				/*traverseDamageFields(UserGem1.gemInfo[1].CrossGaugeAcquisition);
+				traverseDamageFields(UserGem1.gemInfo[1].CrossGaugeUsageReduction); */
+				break;
+			case "Vitality":
+				/*traverseDamageFields(UserGem1.gemInfo[1].VitalityGradualRestoration);
+				traverseDamageFields(UserGem1.gemInfo[1].VitalityInstantRestoration);*/
+				break;
+			case "Assist":
+				/*traverseDamageFields(UserGem1.gemInfo[1].Attack);*/
+				break;								
+		}
+	}
 	return;	
 }
 
@@ -276,6 +351,25 @@ function traverseDamageFieldsEffects(value)
 			$(this).css('color', 'black');
 			return;
 		}
+		
+		if (containsNumber($(this).html()))
+		{
+			$(this).html(createNewDamageString($(this).html(), value));
+			if (value > 0)
+			{
+				$(this).css('color', 'green');
+			}
+			else
+			{
+				$(this).css('color', 'red');
+			}
+		}
+	})
+}
+
+function traverseDefenseFieldsEffects(value)
+{
+	$('.health').each(function(){
 		
 		if (containsNumber($(this).html()))
 		{
@@ -308,7 +402,10 @@ function resetConfiguration(gemSlot)
 	$('#gems1').val("none");
 	$('#gems2').val("none");
 	$('#gems3').val("none");
-	
+
+	/* UserGem1 = clear */
+	/* UserGem2 = clear */
+	/* UserGem3 = clear */
 	return;
 }
 
@@ -316,7 +413,7 @@ function resetValuesWhileKeepingGemConfig()
 {
 	resetDamageValues();
 	//resetSpeedValues();
-	//resetDefenseValues();
+	resetDefenseValues();
 	//resetAssistGemEffects();
 	//resetVitalityGemEffects();
 }

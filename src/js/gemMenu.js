@@ -265,55 +265,55 @@ function createPopUpWindow(gemtype, array, slot, userGem)
 			break;
 
 		case "ironWallLevel2":
-			userGem = new gemClass("Defense", gemtype, array[1].Defense[0].IronWall[0].level1[0]);
+			userGem = new gemClass("Defense", gemtype, array[1].Defense[0].IronWall[1].level2[0]);
 			ironWallLevel2DropDown(array, slot);
 			break;
 
 		case "ironWallLevel3":
-			userGem = new gemClass("Defense", gemtype, array[1].Defense[0].IronWall[0].level1[0]);
+			userGem = new gemClass("Defense", gemtype, array[1].Defense[0].IronWall[2].level3[0]);
 			ironWallLevel3DropDown(array, slot);
 			break;
 
 		case "fortLevel1":
-			userGem = new gemClass("Defense", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);
+			userGem = new gemClass("Defense", gemtype, array[1].Defense[1].Fortitude[0].level1[0]);
 			fortLevel1DropDown(array, slot);
 			break;
 
 		case "fortLevel2":
-			userGem = new gemClass("Defense", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);
+			userGem = new gemClass("Defense", gemtype, array[1].Defense[1].Fortitude[1].level2[0]);
 			fortLevel2DropDown(array, slot);
 			break;
 
 		case "divineSpeedLevel1":
-			userGem = new gemClass("Speed", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);
+			userGem = new gemClass("Speed", gemtype, array[2].Attack[0].ImmensePower[0].level1[0]);
 			divineSpeedLevel1DropDown(array, slot);
 			break;
 
 		case "divineSpeedLevel2":
-			userGem = new gemClass("Speed", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);
+			userGem = new gemClass("Speed", gemtype, array[2].Attack[0].ImmensePower[0].level1[0]);
 			divineSpeedLevel2DropDown(array, slot);
 			break;
 
 		case "divineSpeedLevel3":
-			userGem = new gemClass("Speed", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);
+			userGem = new gemClass("Speed", gemtype, array[2].Attack[0].ImmensePower[0].level1[0]);
 			divineSpeedLevel3DropDown(array, slot);
 			break;
 
 		/* update array index once speed gem object gets put into json file 1/1/2013 */
 		case "onslaughtLevel1":
-			userGem = new gemClass("CrossGauge", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);		
+			userGem = new gemClass("CrossGauge", gemtype, array[3].Attack[0].ImmensePower[0].level1[0]);		
 			onslaughtLevel1DropDown(array, slot);
 			break;
 
 		case "onslaughtLevel2":
 			
-			userGem = new gemClass("CrossGauge", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);
+			userGem = new gemClass("CrossGauge", gemtype, array[3].Attack[0].ImmensePower[0].level1[0]);
 			onslaughtLevel2DropDown(array, slot);
 			break;
 
 		case "proficiencyLevel1":
 
-			userGem = new gemClass("Vitality", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);
+			userGem = new gemClass("Vitality", gemtype, array[3].Attack[0].ImmensePower[0].level1[0]);
 			proficiencyLevel1DropDown(array, slot);
 			break;
 
@@ -321,13 +321,13 @@ function createPopUpWindow(gemtype, array, slot, userGem)
 			Capcom, you're fucking up 1/1/2013
 		*/
 		case "proficiencyLevel2":
-			userGem = new gemClass("Vitality", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);
+			userGem = new gemClass("Vitality", gemtype, array[3].Attack[0].ImmensePower[0].level1[0]);
 			proficiencyLevel2DropDown(array, slot);
 			break;
 
 		case "lifeForceLevel1":
 
-			userGem = new gemClass("Defense", gemtype, array[0].Attack[0].ImmensePower[0].level1[0]);
+			userGem = new gemClass("Defense", gemtype, array[4].Attack[0].ImmensePower[0].level1[0]);
 			lifeForceLevel1DropDown(array, slot);
 			break;
 

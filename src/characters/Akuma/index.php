@@ -13,7 +13,8 @@
 	        div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
 	        div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
 	        .ui-dialog .ui-state-error { padding: .3em; }
-	        .validateTips { border: 1px solid transparent; padding: 0.3em; }
+	        .validateTips { border: 1px solid transparent; padding: 0.3em; font-size: 14px;}
+	        #dialog-form1 select, #dialog-form2 select, #dialog-form3 select { width: 290px; font-size: 12px;}
     	</style>
 	</head>
 	<body>
@@ -302,42 +303,41 @@
 								switch($i)
 								{
 									case 0:
-                                                                                echo "\t\t\t\t\t\t\t<td class='move'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='move'>";
+										break;
 									case 1:
 										echo "\t\t\t\t\t\t\t<td class='command'>";
 										break;
 									case 2:
-                                                                                echo "\t\t\t\t\t\t\t<td class='hit-level'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='hit-level'>";
+										break;
 									case 3:
-                                                                                echo "\t\t\t\t\t\t\t<td class='damage'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='damage'>";
+										break;
 									case 4:
-                                                                                echo "\t\t\t\t\t\t\t<td class='startup-frame'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='startup-frame'>";
+										break;
 									case 5:
-                                                                                echo "\t\t\t\t\t\t\t<td class='active-frame'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='active-frame'>";
+										break;
 									case 6:
-                                                                                echo "\t\t\t\t\t\t\t<td class='recovery-frame'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='recovery-frame'>";
+										break;
 									case 7:
-                                                                                echo "\t\t\t\t\t\t\t<td class='hit-advantage'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='hit-advantage'>";
+										break;
 									case 8:
-                                                                                echo "\t\t\t\t\t\t\t<td class='block-advantage'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='block-advantage'>";
+										break;
 									case 9:
-                                                                                echo "\t\t\t\t\t\t\t<td class='cancelable'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='cancelable'>";
+										break;
 									case 10:
-                                                                                echo "\t\t\t\t\t\t\t<td class='meter-gain'>";
-                                                                                break;
-									
+										echo "\t\t\t\t\t\t\t<td class='meter-gain'>";
+										break;
 									case 11:
-                                                                                echo "\t\t\t\t\t\t\t<td class='notes'>";
-                                                                                break;
+										echo "\t\t\t\t\t\t\t<td class='notes'>";
+										break;
 								}
 								echo $data[0];
 								echo "</td>\n ";
@@ -356,4 +356,5 @@
 	<script type="text/javascript" src="../../js/gemMenu.js"></script>
 	<script type="text/javascript" src="../../js/gemEffects.js"></script>
 	<script type="text/javascript" src="../../js/underscore.js"></script>
+	<script type="text/javascript" src="../../js/gemClass.js"></script>
 </html>
